@@ -1,6 +1,8 @@
 package com.tripp.uxteam.tripp;
 
+// This small class is meant to be used to menage and create attractions for the app
 public class Attraction {
+
     static long id_index = 1;
     long id;
     String name;
@@ -8,6 +10,7 @@ public class Attraction {
     String tripAdvisorUrl;
     String shortDescription;
     String imgUrl;
+    // we set some tags that an attraction can have. a station can have several tags.
     public enum TAGS {Hiking, Romantic, Beaches, Theater, Parties, SiteSeeing, Food, Extreme, Art}
     TAGS[] tags;
 
