@@ -4,15 +4,16 @@ package com.tripp.uxteam.tripp;
 public class Attraction {
 
     static long id_index = 1;
-    long id;
-    String name;
-    String googleMapsUrl;
-    String tripAdvisorUrl;
-    String shortDescription;
-    String imgUrl;
+    private long id;
+    private String name;
+    private String googleMapsUrl;
+    private String tripAdvisorUrl;
+    private String shortDescription;
+    private String imgUrl;
+
     // we set some tags that an attraction can have. a station can have several tags.
     public enum TAGS {Hiking, Romantic, Beaches, Theater, Parties, SiteSeeing, Food, Extreme, Art}
-    TAGS[] tags;
+    private TAGS[] tags;
 
     Attraction(String name,
                String googleMapsUrl,
@@ -29,4 +30,30 @@ public class Attraction {
         this.imgUrl = imgUrl;
         this.tags = tags;
     }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getGoogleMapsUrl() {
+        return googleMapsUrl;
+    }
+
+    public String getTripAdvisorUrl() {
+        return tripAdvisorUrl;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
 }
