@@ -12,7 +12,6 @@ public class Attraction {
     private String imgUrl;
 
     // we set some tags that an attraction can have. a station can have several tags.
-    public enum TAGS {Hiking, Romantic, Beaches, Theater, Parties, SiteSeeing, Food, Extreme, Art}
     private TAGS[] tags;
 
     Attraction(String name,
