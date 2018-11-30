@@ -11,7 +11,14 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/sign_screen_background">
+        android:background="@drawable/map_first_screen">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
 
         <ImageView
 
@@ -21,7 +28,7 @@
             android:layout_marginTop="135dp"
             android:contentDescription="@string/tripp"
             android:padding="50dp"
-            android:src="@drawable/tripp_logo_cropped"
+            android:src="@drawable/tripp_logo"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -66,12 +73,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/signup_btn" />
 
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
+
     </android.support.constraint.ConstraintLayout>
 
 
