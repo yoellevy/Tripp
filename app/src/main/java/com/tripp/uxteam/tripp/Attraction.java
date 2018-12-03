@@ -32,7 +32,7 @@ public class Attraction {
         this.tags = tags;
 
         this.city = city;
-        city.addAtraction(this);
+        city.addAttraction(this);
     }
 
 

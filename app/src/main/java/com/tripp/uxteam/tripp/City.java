@@ -1,13 +1,32 @@
 package com.tripp.uxteam.tripp;
 
-class City {
-    Country country;
+import java.util.ArrayList;
 
-    City(Country country){
+class City {
+
+    private Country country;
+    private String cityName;
+    private ArrayList<Attraction> attractions;
+
+    City(String cityName, Country country){
+        this.cityName = cityName;
         this.country = country;
+        country.addCity(this);
     }
 
-    void addAtraction(Attraction attraction){
+    ArrayList<Attraction> getAllAttractions(){
+        return this.attractions;
+    }
 
+    void addAttraction(Attraction attraction){
+        this.attractions.add(attraction);
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public Country getCountry() {
+        return country;
     }
 }
