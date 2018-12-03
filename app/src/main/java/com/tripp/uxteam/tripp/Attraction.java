@@ -10,6 +10,7 @@ public class Attraction {
     private String tripAdvisorUrl;
     private String shortDescription;
     private String imgUrl;
+    private City city;
 
     // we set some tags that an attraction can have. a station can have several tags.
     private TAGS[] tags;
@@ -19,6 +20,7 @@ public class Attraction {
                String tripAdvisorUrl,
                String shortDescription,
                String imgUrl,
+               City city,
                TAGS[] tags){
         id_index += 1;
         this.id = id_index;
@@ -28,6 +30,9 @@ public class Attraction {
         this.shortDescription = shortDescription;
         this.imgUrl = imgUrl;
         this.tags = tags;
+
+        this.city = city;
+        city.addAtraction(this);
     }
 
 
