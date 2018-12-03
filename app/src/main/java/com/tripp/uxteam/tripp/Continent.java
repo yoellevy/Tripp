@@ -7,9 +7,9 @@ class Continent {
     private ArrayList<Country> countries;
     private String continentName;
 
-    Continent(String cityName){
+    Continent(String continentName){
         this.countries = new ArrayList<Country>();
-        this.continentName = cityName;
+        this.continentName = continentName;
     }
 
     void addCountry(Country country){
