@@ -6,9 +6,13 @@ public class Country {
 
     private ArrayList<City> cities;
     private String countryName;
+    private Continent continent;
 
-    Country(String cityName){
+    Country(String cityName, Continent continent){
+        this.cities = new ArrayList<City>();
         this.countryName = cityName;
+        this.continent = continent;
+        continent.addCountry(this);
     }
 
     void addCity(City city){
@@ -21,5 +25,9 @@ public class Country {
 
     public String getCountryName() {
         return countryName;
+    }
+
+    public Continent getContinent() {
+        return continent;
     }
 }

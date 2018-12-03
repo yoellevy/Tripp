@@ -16,7 +16,7 @@ class Continent {
         this.countries.add(country);
     }
 
-    ArrayList<Country> getCountries(){
+    ArrayList<Country> getAllCountries(){
         return this.countries;
     }
 
