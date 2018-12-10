@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class MainActivity extends AppCompatActivity implements SignScreen.OnFragmentInteractionListener, AboutYourselfFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements SignScreen.OnFragmentInteractionListener, AboutYourselfFragment.OnFragmentInteractionListener,TripViewFragment.OnFragmentInteractionListener {
 
     private static MainActivity instance = null;
 
@@ -26,14 +26,12 @@ public class MainActivity extends AppCompatActivity implements SignScreen.OnFrag
         //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        SignScreen signScreenFragment = SignScreen.newInstance("a", "b");
+        SignScreen signScreenFragment = SignScreen.newInstance();
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction =
                 fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.fragment_container, signScreenFragment);
         fragmentTransaction.commit();
-
-//        setContentView(R.layout.fragment_sign_screen);
         setContentView(R.layout.activity_main);
         instance = this;
     }

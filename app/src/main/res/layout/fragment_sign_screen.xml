@@ -11,7 +11,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/map_first_screen">
+        android:background="@drawable/first_screen_image_edit">
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"
@@ -25,34 +25,37 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="135dp"
+            android:layout_marginTop="150dp"
             android:contentDescription="@string/tripp"
-            android:padding="50dp"
-            android:src="@drawable/tripp_logo"
+            android:padding="65dp"
+            android:src="@drawable/logo_first_screen"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/raleway_extrabold"
             android:text="@string/get_started"
-            android:textColor="#ffffff"
-            android:textSize="50sp"
+            android:textColor="#fff"
+            android:textSize="45sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/signup_btn"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/guideline" />
+            app:layout_constraintRight_toRightOf="parent" />
 
         <Button
             android:id="@+id/signup_btn"
-            android:layout_width="225sp"
-            android:layout_height="75sp"
-            android:layout_marginTop="100dp"
+            android:layout_width="265sp"
+            android:layout_height="57sp"
+            android:layout_marginTop="150dp"
             android:background="@drawable/sign_up_btn"
+            android:fontFamily="@font/raleway_bold"
             android:gravity="center"
             android:text="@string/sign_up_btn_txt"
             android:textAllCaps="false"
-            android:textColor="#aaffffff"
+            android:textColor="#ffffff"
             android:textSize="25sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -60,14 +63,15 @@
 
         <Button
             android:id="@+id/login_btn"
-            android:layout_width="225sp"
-            android:layout_height="75sp"
+            android:layout_width="265sp"
+            android:layout_height="57sp"
             android:layout_marginTop="25dp"
             android:background="@drawable/login_btn"
+            android:fontFamily="@font/raleway_bold"
             android:gravity="center"
             android:text="@string/login"
             android:textAllCaps="false"
-            android:textColor="#aaffffff"
+            android:textColor="#ffffff"
             android:textSize="25sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
