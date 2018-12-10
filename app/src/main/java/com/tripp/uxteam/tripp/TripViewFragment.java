@@ -3,10 +3,13 @@ package com.tripp.uxteam.tripp;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 
 /**
@@ -58,13 +61,34 @@ public class TripViewFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+    }
+
+    public void addSiteToTrip(View view, int idx) {
+        ConstraintLayout nav_layout = view.findViewById(R.id.nav_constraint_layout);
+        Button btn = new Button(getActivity());
+        btn.setText(String.valueOf(idx));
+        ConstraintLayout.LayoutParams layout_param = new ConstraintLayout.LayoutParams(250, 250);
+        layout_param.setMargins(50, 50, 0, 0);
+        if (idx > 3)
+            layout_param.topToBottom = (idx - 3);
+        if (idx % 3 != 1)
+            layout_param.leftToRight = idx - 1;
+        btn.setLayoutParams(layout_param);
+        btn.setBackgroundResource(R.drawable.circle_shape);
+        btn.setId(idx);
+        nav_layout.addView(btn);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trip_view, container, false);
+        View view = inflater.inflate(R.layout.fragment_trip_view, container, false);
+        for (int i = 1; i < 30; i++)
+            addSiteToTrip(view, i);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
