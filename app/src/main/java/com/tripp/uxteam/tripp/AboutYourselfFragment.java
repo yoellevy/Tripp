@@ -1,6 +1,7 @@
 package com.tripp.uxteam.tripp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -37,7 +38,6 @@ public class AboutYourselfFragment extends Fragment {
      *
      * @return A new instance of fragment AboutYourselfFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static AboutYourselfFragment newInstance() {
         AboutYourselfFragment fragment = new AboutYourselfFragment();
         Bundle args = new Bundle();
@@ -60,8 +60,13 @@ public class AboutYourselfFragment extends Fragment {
         Button img_leftTop = view.findViewById(R.id.img_left_top);
         Button img_rightBottm = view.findViewById(R.id.img_right_bottom);
         Button img_leftBottom = view.findViewById(R.id.img_left_bottom);
-
-        if (QuestionsAnswered == 1) {
+        if (QuestionsAnswered == 0) {
+            title_img.setImageResource(R.drawable.title_one);
+            img_rightTop.setBackgroundResource(R.drawable.answer_frame_site_seeing);
+            img_leftTop.setBackgroundResource(R.drawable.answer_frame_park);
+            img_rightBottm.setBackgroundResource(R.drawable.answer_frame_art);
+            img_leftBottom.setBackgroundResource(R.drawable.answer_frame_viewpoints);
+        } else if (QuestionsAnswered == 1) {
             title_img.setImageResource(R.drawable.title_two);
             img_rightTop.setBackgroundResource(R.drawable.answer_frame_sites);
             img_leftTop.setBackgroundResource(R.drawable.answer_frame_shopping);
@@ -131,6 +136,13 @@ public class AboutYourselfFragment extends Fragment {
         mListener = null;
     }
 
+    public void OnBack() {
+        QuestionsAnswered--;
+        if (QuestionsAnswered < 0)
+            QuestionsAnswered = 0;
+        setNextQuestion();
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -142,7 +154,6 @@ public class AboutYourselfFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

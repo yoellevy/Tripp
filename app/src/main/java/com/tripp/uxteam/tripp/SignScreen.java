@@ -65,7 +65,7 @@ public class SignScreen extends Fragment {
                 AboutYourselfFragment fragment = AboutYourselfFragment.newInstance();
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.replace(R.id.fragment_container, fragment,"ABOUT_FRAGMENT");
                 fragmentTransaction.commit();
             }
         });

@@ -1,6 +1,7 @@
 package com.tripp.uxteam.tripp;
 
 
+import android.app.Fragment;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -9,7 +10,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class MainActivity extends AppCompatActivity implements SignScreen.OnFragmentInteractionListener, AboutYourselfFragment.OnFragmentInteractionListener,TripViewFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements SignScreen.OnFragmentInteractionListener, AboutYourselfFragment.OnFragmentInteractionListener, TripViewFragment.OnFragmentInteractionListener {
 
     private static MainActivity instance = null;
 
@@ -39,5 +40,16 @@ public class MainActivity extends AppCompatActivity implements SignScreen.OnFrag
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        AboutYourselfFragment about_fragment = (AboutYourselfFragment)getSupportFragmentManager().findFragmentByTag("ABOUT_FRAGMENT");
+        if (about_fragment != null && about_fragment.isVisible()) {
+            about_fragment.OnBack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
