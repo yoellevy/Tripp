@@ -62,7 +62,7 @@ public class SignScreen extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TripViewFragment fragment = TripViewFragment.newInstance("a", "b");
+                AboutYourselfFragment fragment = AboutYourselfFragment.newInstance();
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, fragment);
@@ -87,14 +87,6 @@ public class SignScreen extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    public void signupOnClick(View view) {
-        AboutYourselfFragment fragment = AboutYourselfFragment.newInstance("a", "b");
-        FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.commit();
     }
 
     /**

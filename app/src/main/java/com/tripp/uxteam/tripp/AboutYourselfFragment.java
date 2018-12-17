@@ -4,9 +4,13 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 
 /**
@@ -18,16 +22,10 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class AboutYourselfFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    static int QuestionsAnswered = 0;
 
     public AboutYourselfFragment() {
         // Required empty public constructor
@@ -37,16 +35,13 @@ public class AboutYourselfFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment AboutYourselfFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AboutYourselfFragment newInstance(String param1, String param2) {
+    public static AboutYourselfFragment newInstance() {
         AboutYourselfFragment fragment = new AboutYourselfFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        QuestionsAnswered = 0;
         fragment.setArguments(args);
         return fragment;
     }
@@ -54,9 +49,30 @@ public class AboutYourselfFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
+    }
+
+    View view;
+
+    void setNextQuestion() {
+        ImageView title_img = view.findViewById(R.id.about_title);
+        Button img_rightTop = view.findViewById(R.id.img_right_top);
+        Button img_leftTop = view.findViewById(R.id.img_left_top);
+        Button img_rightBottm = view.findViewById(R.id.img_right_bottom);
+        Button img_leftBottom = view.findViewById(R.id.img_left_bottom);
+
+        if (QuestionsAnswered == 1) {
+            title_img.setImageResource(R.drawable.title_two);
+            img_rightTop.setBackgroundResource(R.drawable.answer_frame_sites);
+            img_leftTop.setBackgroundResource(R.drawable.answer_frame_shopping);
+            img_rightBottm.setBackgroundResource(R.drawable.answer_frame_pool);
+            img_leftBottom.setBackgroundResource(R.drawable.answer_frame_coffee);
+        } else if (QuestionsAnswered == 2) {
+            title_img.setImageResource(R.drawable.title_three);
+            img_rightTop.setBackgroundResource(R.drawable.answer_frame_party);
+            img_leftTop.setBackgroundResource(R.drawable.answer_frame_bed);
+            img_rightBottm.setBackgroundResource(R.drawable.answer_frame_food);
+            img_leftBottom.setBackgroundResource(R.drawable.answer_frame_bar);
         }
     }
 
@@ -64,14 +80,38 @@ public class AboutYourselfFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about_yourself, container, false);
-    }
+        view = inflater.inflate(R.layout.fragment_about_yourself, container, false);
+        Button img_rightTop = view.findViewById(R.id.img_right_top);
+        Button img_leftTop = view.findViewById(R.id.img_left_top);
+        Button img_rightBottm = view.findViewById(R.id.img_right_bottom);
+        Button img_leftBottom = view.findViewById(R.id.img_left_bottom);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+        Button[] img_arr = new Button[]{img_rightTop, img_leftTop, img_rightBottm, img_leftBottom};
+        int i = 0;
+        for (Button img_button :
+                img_arr) {
+            img_button.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+
+                    if (QuestionsAnswered < 2) {
+                        QuestionsAnswered++;
+                        setNextQuestion();
+                        return;
+                    }
+
+                    TripViewFragment fragment = TripViewFragment.newInstance("a", "b");
+                    FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, fragment);
+                    fragmentTransaction.commit();
+                }
+            });
+            i++;
         }
+
+        return view;
     }
 
     @Override
