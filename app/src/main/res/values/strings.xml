@@ -8,4 +8,6 @@
     <string name="get_started">Get Started</string>
     <string name="login">Login</string>
     <string name="trip_type_question">What type of trip are you looking for?</string>
+    <string name="trip_duration_question">and how long will you be away?</string>
+    <string name="fetch_my_trip_btn_txt">Fetch My Trip!</string>
 </resources>
