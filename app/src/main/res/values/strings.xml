@@ -7,4 +7,5 @@
     <string name="tripp">Tripp</string>
     <string name="get_started">Get Started</string>
     <string name="login">Login</string>
+    <string name="trip_type_question">What type of trip are you looking for?</string>
 </resources>
