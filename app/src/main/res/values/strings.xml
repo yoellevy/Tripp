@@ -7,4 +7,7 @@
     <string name="tripp">Tripp</string>
     <string name="get_started">Get Started</string>
     <string name="login">Login</string>
+    <string name="trip_summery">Trip Summery</string>
+    <string name="paris">Paris</string>
+    <string name="book">Book</string>
 </resources>
