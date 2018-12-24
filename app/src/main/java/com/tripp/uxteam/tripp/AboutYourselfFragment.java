@@ -1,6 +1,7 @@
 package com.tripp.uxteam.tripp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,14 +17,11 @@ import android.widget.ImageView;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link AboutYourselfFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link AboutYourselfFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class AboutYourselfFragment extends Fragment {
-
-    private OnFragmentInteractionListener mListener;
 
     static int QuestionsAnswered = 0;
 
@@ -37,7 +35,6 @@ public class AboutYourselfFragment extends Fragment {
      *
      * @return A new instance of fragment AboutYourselfFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static AboutYourselfFragment newInstance() {
         AboutYourselfFragment fragment = new AboutYourselfFragment();
         Bundle args = new Bundle();
@@ -60,8 +57,13 @@ public class AboutYourselfFragment extends Fragment {
         Button img_leftTop = view.findViewById(R.id.img_left_top);
         Button img_rightBottm = view.findViewById(R.id.img_right_bottom);
         Button img_leftBottom = view.findViewById(R.id.img_left_bottom);
-
-        if (QuestionsAnswered == 1) {
+        if (QuestionsAnswered == 0) {
+            title_img.setImageResource(R.drawable.title_one);
+            img_rightTop.setBackgroundResource(R.drawable.answer_frame_site_seeing);
+            img_leftTop.setBackgroundResource(R.drawable.answer_frame_park);
+            img_rightBottm.setBackgroundResource(R.drawable.answer_frame_art);
+            img_leftBottom.setBackgroundResource(R.drawable.answer_frame_viewpoints);
+        } else if (QuestionsAnswered == 1) {
             title_img.setImageResource(R.drawable.title_two);
             img_rightTop.setBackgroundResource(R.drawable.answer_frame_sites);
             img_leftTop.setBackgroundResource(R.drawable.answer_frame_shopping);
@@ -104,7 +106,7 @@ public class AboutYourselfFragment extends Fragment {
                     SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
                     FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, fragment);
+                    fragmentTransaction.replace(R.id.fragment_container, fragment,"TRIP_VIEW_FRAGMENT");
                     fragmentTransaction.commit();
                 }
             });
@@ -117,32 +119,19 @@ public class AboutYourselfFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    public void OnBack() {
+        QuestionsAnswered--;
+        if (QuestionsAnswered < 0)
+            QuestionsAnswered = 0;
+        setNextQuestion();
     }
+
+
 }
