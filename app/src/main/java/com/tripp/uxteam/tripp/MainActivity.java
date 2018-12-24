@@ -16,8 +16,6 @@ public class MainActivity extends AppCompatActivity implements SignScreen.OnFrag
 
     private static MainActivity instance = null;
 
-    private ProgressBar spinner;
-
     public static MainActivity GetInstance() {
         return instance;
     }
@@ -26,11 +24,9 @@ public class MainActivity extends AppCompatActivity implements SignScreen.OnFrag
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        spinner = (ProgressBar)findViewById(R.id.progressBar);
-        spinner.setVisibility(View.GONE);
-
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
