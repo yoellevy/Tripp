@@ -30,7 +30,6 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class TripViewFragment extends Fragment {
-    private OnFragmentInteractionListener mListener;
 
     public TripViewFragment() { }
     /**
@@ -108,14 +107,14 @@ public class TripViewFragment extends Fragment {
         attractions.add("arc_de_triomphe");
         attractions.add("jadis_pub");
     }
-
+    android.support.v4.widget.DrawerLayout mDrawerLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_trip_view, container, false);
+        view = inflater.inflate(R.layout.fragment_trip_view, null);
 
-
+        mDrawerLayout = view.findViewById(R.id.drawer_layout);
 
         this.createMockAttractions();
 
@@ -157,6 +156,26 @@ public class TripViewFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    public void onFling(float velocityX, float velocityY)
+    {
+        if (Math.abs(velocityY) > Math.abs(velocityX))
+        {
+            if (velocityY > 0)
+                previus_slide();
+            else
+                next_slide();
+        } else {
+            if(velocityX>0)
+                openDrawer();
+        }
+
+    }
+
+    public void openDrawer(){
+        mDrawerLayout.openDrawer(mDrawerLayout);
+        Toast.makeText(getContext(),"h",Toast.LENGTH_SHORT).show();
     }
 
 }

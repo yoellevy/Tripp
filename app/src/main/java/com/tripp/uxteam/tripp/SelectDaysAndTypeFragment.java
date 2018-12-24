@@ -54,7 +54,6 @@ public class SelectDaysAndTypeFragment extends Fragment {
         NumberPicker timeTypePicker = view.findViewById(R.id.time_types_picker);
         timeTypePicker.setMinValue(0);
         timeTypePicker.setMaxValue(2);
-
         timeTypePicker.setDisplayedValues(getResources().getStringArray(R.array.TIME_TYPES));
 
 
@@ -66,7 +65,7 @@ public class SelectDaysAndTypeFragment extends Fragment {
                 TripViewFragment fragment = TripViewFragment.newInstance();
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.replace(R.id.fragment_container, fragment,"TRIP_VIEW_FRAGMENT");
                 fragmentTransaction.commit();
             }
         });

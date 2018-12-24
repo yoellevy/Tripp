@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="select_days_and_type_fragment_img_height">130dp</dimen>
-    <dimen name="select_days_and_type_fragment_img_width">170dp</dimen>
-    <dimen name="select_days_and_type_fragment_img_margin">8dp</dimen>
+    <dimen name="select_days_and_type_fragment_img_width">190dp</dimen>
+    <dimen name="select_days_and_type_fragment_img_margin">12dp</dimen>
 </resources>
