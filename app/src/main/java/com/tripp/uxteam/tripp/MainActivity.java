@@ -7,12 +7,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 
 public class MainActivity extends AppCompatActivity implements SignScreen.OnFragmentInteractionListener, AboutYourselfFragment.OnFragmentInteractionListener, TripViewFragment.OnFragmentInteractionListener {
 
     private static MainActivity instance = null;
+
+    private ProgressBar spinner;
 
     public static MainActivity GetInstance() {
         return instance;
@@ -22,6 +26,9 @@ public class MainActivity extends AppCompatActivity implements SignScreen.OnFrag
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        spinner = (ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
+
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         //Remove notification bar
