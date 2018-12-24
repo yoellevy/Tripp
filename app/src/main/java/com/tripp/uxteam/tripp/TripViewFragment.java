@@ -1,25 +1,19 @@
 package com.tripp.uxteam.tripp;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -31,7 +25,9 @@ import java.util.List;
  */
 public class TripViewFragment extends Fragment {
 
-    public TripViewFragment() { }
+    public TripViewFragment() {
+    }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -107,7 +103,10 @@ public class TripViewFragment extends Fragment {
         attractions.add("arc_de_triomphe");
         attractions.add("jadis_pub");
     }
+
     android.support.v4.widget.DrawerLayout mDrawerLayout;
+    NavigationView nav_view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -115,9 +114,15 @@ public class TripViewFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_trip_view, null);
 
         mDrawerLayout = view.findViewById(R.id.drawer_layout);
-
+        nav_view = view.findViewById(R.id.nav_view);
         this.createMockAttractions();
-
+        openDrawer();
+        ((ImageView)view.findViewById(R.id.drawer_handle_circle)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDrawer();
+            }
+        });
         int idx = 1;
         for (String name : attractions
                 ) {
@@ -158,24 +163,21 @@ public class TripViewFragment extends Fragment {
         super.onDetach();
     }
 
-    public void onFling(float velocityX, float velocityY)
-    {
-        if (Math.abs(velocityY) > Math.abs(velocityX))
-        {
+    public void onFling(float velocityX, float velocityY) {
+        if (Math.abs(velocityY) > Math.abs(velocityX)) {
             if (velocityY > 0)
                 previus_slide();
             else
                 next_slide();
         } else {
-            if(velocityX>0)
+            if (velocityX > 0)
                 openDrawer();
         }
 
     }
 
-    public void openDrawer(){
-        mDrawerLayout.openDrawer(mDrawerLayout);
-        Toast.makeText(getContext(),"h",Toast.LENGTH_SHORT).show();
+    public void openDrawer() {
+        mDrawerLayout.openDrawer(nav_view);
     }
 
 }
