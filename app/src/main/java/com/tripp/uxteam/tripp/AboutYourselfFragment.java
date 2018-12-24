@@ -103,7 +103,7 @@ public class AboutYourselfFragment extends Fragment {
                         return;
                     }
 
-                    TripViewFragment fragment = TripViewFragment.newInstance("a", "b");
+                    SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
                     FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_container, fragment,"TRIP_VIEW_FRAGMENT");
