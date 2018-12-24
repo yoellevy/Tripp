@@ -75,7 +75,7 @@ public class TripViewFragment extends Fragment {
         ConstraintLayout nav_layout = view.findViewById(R.id.nav_constraint_layout);
         final Button btn = new Button(getActivity());
 //        btn.setText(String.valueOf(idx));
-        ConstraintLayout.LayoutParams layout_param = new ConstraintLayout.LayoutParams(250, 289);
+        ConstraintLayout.LayoutParams layout_param = new ConstraintLayout.LayoutParams(260, 356);
         layout_param.setMargins(50, 50, 0, 0);
         if (idx > 3)
             layout_param.topToBottom = (idx - 3);
