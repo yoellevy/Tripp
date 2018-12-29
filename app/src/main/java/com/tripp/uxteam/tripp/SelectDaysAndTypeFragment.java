@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.NumberPicker;
-import android.widget.ProgressBar;
 
 
 /**
@@ -20,8 +19,6 @@ import android.widget.ProgressBar;
  * to handle interaction events.
  */
 public class SelectDaysAndTypeFragment extends Fragment {
-    private ProgressBar spinner;
-
     public SelectDaysAndTypeFragment() { }
 
     /**
@@ -49,9 +46,6 @@ public class SelectDaysAndTypeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_select_days_and_type, container, false);
 
-        spinner = (ProgressBar) view.findViewById(R.id.progress_bar);
-        spinner.setVisibility(View.GONE);
-
         // here we'll set the values of the number picker element
         NumberPicker timePicker = view.findViewById(R.id.time_length_picker);
         timePicker.setMinValue(1);
@@ -60,7 +54,6 @@ public class SelectDaysAndTypeFragment extends Fragment {
         NumberPicker timeTypePicker = view.findViewById(R.id.time_types_picker);
         timeTypePicker.setMinValue(0);
         timeTypePicker.setMaxValue(2);
-
         timeTypePicker.setDisplayedValues(getResources().getStringArray(R.array.TIME_TYPES));
 
 
@@ -69,14 +62,11 @@ public class SelectDaysAndTypeFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-
-                spinner.setVisibility(View.VISIBLE);
-
-//                TripViewFragment fragment = TripViewFragment.newInstance();
-//                FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.fragment_container, fragment);
-//                fragmentTransaction.commit();
+                TripViewFragment fragment = TripViewFragment.newInstance();
+                FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment,"TRIP_VIEW_FRAGMENT");
+                fragmentTransaction.commit();
             }
         });
         return view;
