@@ -105,7 +105,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="25dp"
-                android:scrollbars="none">
+                android:scrollbars="none"
+                android:id="@+id/drawer_view">
 
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/nav_constraint_layout"
