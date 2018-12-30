@@ -71,17 +71,22 @@ public class SelectDaysAndTypeFragment extends Fragment {
             }
         });
 
-        ImageView[] imgButtons = new ImageView[4];
+        final ImageView[] imgButtons = new ImageView[4];
         imgButtons[0] = view.findViewById(R.id.img_right_top);
         imgButtons[1] = view.findViewById(R.id.img_left_top);
         imgButtons[2] = view.findViewById(R.id.img_right_bottom);
         imgButtons[3] = view.findViewById(R.id.img_left_bottom);
 
-        for (ImageView imgButton : imgButtons) {
-            imgButton.setOnClickListener(new View.OnClickListener() {
+        for (int i = 0; i < imgButtons.length; i ++){
+            final int finalI = i;
+            imgButtons[i].setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
-                    view.setSelected(true);
+                    view.setActivated(true);
+                    for (int j = 0; j < imgButtons.length; j ++){
+                        if(finalI == j){continue;}
+                        else {imgButtons[j].setActivated(false);}
+                    }
                 }
 
             });

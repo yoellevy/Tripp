@@ -143,14 +143,16 @@
                     android:id="@+id/time_length_picker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:textSize="40sp"
                     />
                 <NumberPicker
                     android:theme="@style/DefaultNumberPickerTheme"
                     android:id="@+id/time_types_picker"
                     android:layout_width="150dp"
+                    android:gravity="center_vertical"
                     android:layout_height="wrap_content"
-                    android:textSize="40dp"
+                    android:textSize="40sp"
                     />
             </LinearLayout>
         </LinearLayout>
