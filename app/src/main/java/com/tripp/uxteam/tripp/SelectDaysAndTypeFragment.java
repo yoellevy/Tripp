@@ -27,7 +27,6 @@ public class SelectDaysAndTypeFragment extends Fragment {
      *
      * @return A new instance of fragment TripViewFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static SelectDaysAndTypeFragment newInstance() {
         SelectDaysAndTypeFragment fragment = new SelectDaysAndTypeFragment();
         Bundle args = new Bundle();

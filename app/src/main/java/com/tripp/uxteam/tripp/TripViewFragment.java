@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,6 +23,12 @@ import java.util.ArrayList;
  */
 public class TripViewFragment extends Fragment {
 
+    int current_attraction_idx = 0;
+    android.support.v4.widget.DrawerLayout mDrawerLayout;
+    NavigationView nav_view;
+    View view;
+    ArrayList<String> attractions;
+
     public TripViewFragment() {
     }
 
@@ -34,7 +38,6 @@ public class TripViewFragment extends Fragment {
      *
      * @return A new instance of fragment TripViewFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static TripViewFragment newInstance() {
         TripViewFragment fragment = new TripViewFragment();
         Bundle args = new Bundle();
@@ -47,15 +50,22 @@ public class TripViewFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    public void addSiteToTrip(View view, int idx, final String name) {
+    /**
+     * add attraction thumbnail to drawer
+     * currently adding mock thumbnail.
+     * @param idx index of current thumbnail to insert
+     * @param name name of thumbnail
+     */
+    public void addSiteToTrip(int idx, final String name) {
         ConstraintLayout nav_layout = view.findViewById(R.id.nav_constraint_layout);
         final Button btn = new Button(getActivity());
-//        btn.setText(String.valueOf(idx));
         ConstraintLayout.LayoutParams layout_param = new ConstraintLayout.LayoutParams(260, 356);
         layout_param.setMargins(50, 50, 0, 0);
+        // each row contains 3 thumbnails, constraint thumb nail top to be under the right thumbnail
         if (idx > 3)
             layout_param.topToBottom = (idx - 3);
         else layout_param.topToBottom = R.id.sub_trip_sum_title;
+        // constraint thumbnail left to thr right of prev thumbnail, unless it's the first thumbnail in row
         if (idx % 3 != 1)
             layout_param.leftToRight = idx - 1;
         btn.setLayoutParams(layout_param);
@@ -63,7 +73,7 @@ public class TripViewFragment extends Fragment {
                 "drawable", getActivity().getPackageName());
         btn.setBackgroundResource(resID);
         btn.setContentDescription(name);
-        btn.setId(idx);
+        btn.setId(idx); // use for constraint
         btn.setOnClickListener(new View.OnClickListener() {
             String btn_name = name;
 
@@ -82,11 +92,6 @@ public class TripViewFragment extends Fragment {
         nav_layout.addView(btn);
     }
 
-    View view;
-    ArrayList<String> attractions;
-
-    int prev_attraction_idx = -1;
-    int current_attraction_idx = 0;
 
     private void createMockAttractions() {
         attractions = new ArrayList<>();
@@ -104,8 +109,6 @@ public class TripViewFragment extends Fragment {
         attractions.add("jadis_pub");
     }
 
-    android.support.v4.widget.DrawerLayout mDrawerLayout;
-    NavigationView nav_view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -126,13 +129,16 @@ public class TripViewFragment extends Fragment {
         int idx = 1;
         for (String name : attractions
                 ) {
-            addSiteToTrip(view, idx++, name);
+            addSiteToTrip(idx++, name);
         }
 
         return view;
     }
 
 
+    /**
+     * function to show next attraction
+     */
     public void next_slide() {
         if (current_attraction_idx == attractions.size() - 1)
             return;
@@ -143,7 +149,10 @@ public class TripViewFragment extends Fragment {
         tripview_background.setImageResource(resID);
     }
 
-    public void previus_slide() {
+    /**
+     * change attraction to previous attraction
+     */
+    public void previous_slide() {
         if (current_attraction_idx == 0)
             return;
 
@@ -163,10 +172,15 @@ public class TripViewFragment extends Fragment {
         super.onDetach();
     }
 
+    /**
+     * fling implementation for this fragment, called from main activity
+     * @param velocityX
+     * @param velocityY
+     */
     public void onFling(float velocityX, float velocityY) {
         if (Math.abs(velocityY) > Math.abs(velocityX)) {
             if (velocityY > 0)
-                previus_slide();
+                previous_slide();
             else
                 next_slide();
         } else {
