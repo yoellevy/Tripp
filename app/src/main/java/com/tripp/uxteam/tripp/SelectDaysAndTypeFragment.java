@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
+import android.widget.ProgressBar;
+
 
 
 /**
@@ -20,6 +22,9 @@ import android.widget.NumberPicker;
  * to handle interaction events.
  */
 public class SelectDaysAndTypeFragment extends Fragment {
+
+    private ProgressBar spinner;
+
     public SelectDaysAndTypeFragment() { }
 
     /**
@@ -29,6 +34,7 @@ public class SelectDaysAndTypeFragment extends Fragment {
      * @return A new instance of fragment TripViewFragment.
      */
     public static SelectDaysAndTypeFragment newInstance() {
+
         SelectDaysAndTypeFragment fragment = new SelectDaysAndTypeFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -45,6 +51,9 @@ public class SelectDaysAndTypeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_select_days_and_type, container, false);
+
+        spinner = (ProgressBar) view.findViewById(R.id.progress_bar);
+        spinner.setVisibility(View.GONE);
 
         // here we'll set the values of the number picker element
         NumberPicker timePicker = view.findViewById(R.id.time_length_picker);
@@ -67,6 +76,7 @@ public class SelectDaysAndTypeFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, fragment,"TRIP_VIEW_FRAGMENT");
                 fragmentTransaction.commit();
+                spinner.setVisibility(View.VISIBLE);
             }
         });
 
