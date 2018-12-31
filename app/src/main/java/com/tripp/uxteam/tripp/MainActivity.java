@@ -62,24 +62,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    @Override
-//    public boolean dispatchTouchEvent(MotionEvent event)
-//    {
-//        TripViewFragment trip_view_fragment = (TripViewFragment)getSupportFragmentManager().findFragmentByTag("TRIP_VIEW_FRAGMENT");
-//        if (trip_view_fragment != null && trip_view_fragment.isVisible()) {
-//            trip_view_fragment.onTouch(event);
-////            return true;
-//        }
-//        return super.dispatchTouchEvent(event);
-//    }
-
-
+    /**
+     * used for fling gesture override and send it to active fragment
+     */
     class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
         private static final String DEBUG_TAG = "Gestures";
 
         @Override
         public boolean onDown(MotionEvent event) {
-//            Log.d(DEBUG_TAG, "onDown: " + event.toString());
             return true;
         }
 
