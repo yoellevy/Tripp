@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.NumberPicker;
 
 
@@ -69,6 +70,30 @@ public class SelectDaysAndTypeFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+
+        final ImageView[] imgButtons = new ImageView[4];
+        imgButtons[0] = view.findViewById(R.id.img_right_top);
+        imgButtons[1] = view.findViewById(R.id.img_left_top);
+        imgButtons[2] = view.findViewById(R.id.img_right_bottom);
+        imgButtons[3] = view.findViewById(R.id.img_left_bottom);
+
+        for (int i = 0; i < imgButtons.length; i ++){
+            // if you want only one type of trip to be enabled uncomment this
+            // final int finalI = i;
+            imgButtons[i].setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    view.setActivated(!view.isActivated());
+                    // if you want only one type of trip to be enabled uncomment this
+//                    for (int j = 0; j < imgButtons.length; j ++){
+//                        if(finalI == j){continue;}
+//                        else {imgButtons[j].setActivated(false);}
+//                    }
+                }
+
+            });
+        }
+
         return view;
     }
 
