@@ -19,8 +19,9 @@ import android.widget.NumberPicker;
  * Activities that contain this fragment must implement the
  * to handle interaction events.
  */
-public class SelectDaysAndTypeFragment extends Fragment {
-    public SelectDaysAndTypeFragment() { }
+public class SelectDaysAndTypeFragment extends BaseFragment {
+    public SelectDaysAndTypeFragment() {
+    }
 
     /**
      * Use this factory method to create a new instance of
@@ -58,14 +59,14 @@ public class SelectDaysAndTypeFragment extends Fragment {
 
 
         Button fetchBtn = view.findViewById(R.id.fetch_my_trip_btn);
-        fetchBtn.setOnClickListener(new View.OnClickListener(){
+        fetchBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 TripViewFragment fragment = TripViewFragment.newInstance();
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment,"TRIP_VIEW_FRAGMENT");
+                fragmentTransaction.add(R.id.fragment_container, fragment, "TRIP_VIEW_FRAGMENT").addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
@@ -76,10 +77,10 @@ public class SelectDaysAndTypeFragment extends Fragment {
         imgButtons[2] = view.findViewById(R.id.img_right_bottom);
         imgButtons[3] = view.findViewById(R.id.img_left_bottom);
 
-        for (int i = 0; i < imgButtons.length; i ++){
+        for (int i = 0; i < imgButtons.length; i++) {
             // if you want only one type of trip to be enabled uncomment this
             // final int finalI = i;
-            imgButtons[i].setOnClickListener(new View.OnClickListener(){
+            imgButtons[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     view.setActivated(!view.isActivated());
@@ -97,7 +98,6 @@ public class SelectDaysAndTypeFragment extends Fragment {
     }
 
 
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -109,4 +109,8 @@ public class SelectDaysAndTypeFragment extends Fragment {
         super.onDetach();
     }
 
+    @Override
+    boolean onBack() {
+        return true;
+    }
 }

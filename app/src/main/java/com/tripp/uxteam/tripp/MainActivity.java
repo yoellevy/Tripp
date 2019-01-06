@@ -47,10 +47,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        AboutYourselfFragment about_fragment = (AboutYourselfFragment) fragmentManager.findFragmentByTag("ABOUT_FRAGMENT");
+//        super.onBackPressed();
+//        return;
+        boolean flag = true;
+        BaseFragment about_fragment = (BaseFragment) fragmentManager.findFragmentByTag("ABOUT_FRAGMENT");
         if (about_fragment != null && about_fragment.isVisible()) {
-            about_fragment.OnBack();
-        } else {
+            flag = about_fragment.onBack();
+        }
+        if (flag) {
             super.onBackPressed();
         }
     }
