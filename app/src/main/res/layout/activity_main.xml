@@ -24,13 +24,4 @@
         tools:layout="@layout/fragment_sign_screen">
     </FrameLayout>
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:progressDrawable="@drawable/circular_progress_bar"
-        android:layout_alignParentBottom="true"
-        android:visibility="gone"/>
-
 </android.support.constraint.ConstraintLayout>

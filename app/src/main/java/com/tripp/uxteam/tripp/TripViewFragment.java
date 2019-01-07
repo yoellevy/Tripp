@@ -105,9 +105,9 @@ public class TripViewFragment extends BaseFragment {
         attractions.add("versailles");
         attractions.add("matamata_coffee");
         attractions.add("musee_dorsay");
-        attractions.add("berthillon_glaciet");//
+        attractions.add("berthillon_glaciet");
         attractions.add("arc_de_triomphe");
-        attractions.add("jadis_pub");//
+        attractions.add("jadis_pub");
     }
 
 
