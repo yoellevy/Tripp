@@ -138,17 +138,10 @@
                 android:textAlignment="center"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
-                <NumberPicker
-                    android:theme="@style/DefaultNumberPickerTheme"
-                    android:id="@+id/time_length_picker"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    />
-                <NumberPicker
+                <com.tripp.uxteam.tripp.MyNumberPicker
                     android:theme="@style/DefaultNumberPickerTheme"
                     android:id="@+id/time_types_picker"
-                    android:layout_width="150dp"
+                    android:layout_width="170dp"
                     android:gravity="center_vertical"
                     android:layout_height="wrap_content"
                     />
