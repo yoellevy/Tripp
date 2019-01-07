@@ -3,7 +3,5 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorRedish">#C63E60</color>
-    <color name="colorAlmostBlack">#2D2D2D</color>
     <color name="transparent">#00ffffff</color>
 </resources>
