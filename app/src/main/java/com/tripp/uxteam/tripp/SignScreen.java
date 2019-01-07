@@ -21,7 +21,7 @@ import android.widget.Toast;
  * Use the {@link SignScreen#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SignScreen extends Fragment {
+public class SignScreen extends BaseFragment {
 
     public SignScreen() {
         // Required empty public constructor
@@ -62,7 +62,20 @@ public class SignScreen extends Fragment {
                 AboutYourselfFragment fragment = AboutYourselfFragment.newInstance();
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment,"ABOUT_FRAGMENT");
+                fragmentTransaction.add(R.id.fragment_container, fragment, "ABOUT_FRAGMENT").addToBackStack("ABOUT_FRAGMENT");
+                fragmentTransaction.commit();
+            }
+        });
+
+        button = view.findViewById(R.id.login_btn);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
+                FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.fragment_container, fragment, "FETCH_TRIP_FRAGMENT").addToBackStack("FETCH_TRIP_FRAGMENT");
                 fragmentTransaction.commit();
             }
         });
@@ -79,4 +92,8 @@ public class SignScreen extends Fragment {
         super.onDetach();
     }
 
+    @Override
+    boolean onBack() {
+        return true;
+    }
 }

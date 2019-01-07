@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
-import android.widget.ProgressBar;
-
 
 
 /**
@@ -21,11 +19,9 @@ import android.widget.ProgressBar;
  * Activities that contain this fragment must implement the
  * to handle interaction events.
  */
-public class SelectDaysAndTypeFragment extends Fragment {
-
-    private ProgressBar spinner;
-
-    public SelectDaysAndTypeFragment() { }
+public class SelectDaysAndTypeFragment extends BaseFragment {
+    public SelectDaysAndTypeFragment() {
+    }
 
     /**
      * Use this factory method to create a new instance of
@@ -34,7 +30,6 @@ public class SelectDaysAndTypeFragment extends Fragment {
      * @return A new instance of fragment TripViewFragment.
      */
     public static SelectDaysAndTypeFragment newInstance() {
-
         SelectDaysAndTypeFragment fragment = new SelectDaysAndTypeFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -52,9 +47,6 @@ public class SelectDaysAndTypeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_select_days_and_type, container, false);
 
-        spinner = (ProgressBar) view.findViewById(R.id.progress_bar);
-        spinner.setVisibility(View.GONE);
-
         // here we'll set the values of the number picker element
         NumberPicker timePicker = view.findViewById(R.id.time_length_picker);
         timePicker.setMinValue(1);
@@ -67,16 +59,15 @@ public class SelectDaysAndTypeFragment extends Fragment {
 
 
         Button fetchBtn = view.findViewById(R.id.fetch_my_trip_btn);
-        fetchBtn.setOnClickListener(new View.OnClickListener(){
+        fetchBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 TripViewFragment fragment = TripViewFragment.newInstance();
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment,"TRIP_VIEW_FRAGMENT");
+                fragmentTransaction.add(R.id.fragment_container, fragment, "TRIP_VIEW_FRAGMENT").addToBackStack("TRIP_VIEW_FRAGMENT");
                 fragmentTransaction.commit();
-                spinner.setVisibility(View.VISIBLE);
             }
         });
 
@@ -86,18 +77,13 @@ public class SelectDaysAndTypeFragment extends Fragment {
         imgButtons[2] = view.findViewById(R.id.img_right_bottom);
         imgButtons[3] = view.findViewById(R.id.img_left_bottom);
 
-        for (int i = 0; i < imgButtons.length; i ++){
+        for (int i = 0; i < imgButtons.length; i++) {
             // if you want only one type of trip to be enabled uncomment this
             // final int finalI = i;
-            imgButtons[i].setOnClickListener(new View.OnClickListener(){
+            imgButtons[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     view.setActivated(!view.isActivated());
-                    // if you want only one type of trip to be enabled uncomment this
-//                    for (int j = 0; j < imgButtons.length; j ++){
-//                        if(finalI == j){continue;}
-//                        else {imgButtons[j].setActivated(false);}
-//                    }
                 }
 
             });
@@ -105,7 +91,6 @@ public class SelectDaysAndTypeFragment extends Fragment {
 
         return view;
     }
-
 
 
     @Override
@@ -119,4 +104,8 @@ public class SelectDaysAndTypeFragment extends Fragment {
         super.onDetach();
     }
 
+    @Override
+    boolean onBack() {
+        return true;
+    }
 }
