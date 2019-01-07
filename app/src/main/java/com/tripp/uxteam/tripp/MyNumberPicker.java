@@ -44,6 +44,7 @@ public class MyNumberPicker extends NumberPicker {
     }
 
     private void updateView(View view) {
+        // here we change the font and the size of the picker
         Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.raleway_medium);
         if(view instanceof EditText) {
             ((EditText) view).setTextSize(25);
