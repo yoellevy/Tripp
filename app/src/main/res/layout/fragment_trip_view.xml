@@ -23,16 +23,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/new_sitemap_eiffel_tower"
+                android:src="@drawable/attraction_eiffel_tower"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent" />
+
+            <ImageView
+                android:id="@+id/tripview_text_background"
+                android:layout_width="match_parent"
+                android:layout_height="300sp"
+                android:background="@drawable/rounded_text_box"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
             <Button
                 android:id="@+id/book_btn"
                 android:layout_width="240sp"
                 android:layout_height="42sp"
-                android:layout_marginBottom="55sp"
+                android:layout_marginBottom="67sp"
                 android:background="@drawable/book_btn"
                 android:fontFamily="@font/raleway_bold"
                 android:gravity="center"
@@ -44,32 +51,54 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent" />
 
-            <ImageView
-                android:layout_width="175dp"
+            <TextView
+                android:id="@+id/else_text"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/else_img"
+                android:layout_marginTop="23dp"
+                android:fontFamily="@font/raleway_semibold"
+                android:text="@string/i_want_something_else"
+                android:textColor="#fff"
+                android:textSize="15sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/book_btn" />
 
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="35dp"
-                android:layout_marginBottom="265dp"
-                android:background="@drawable/google_maps"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent" />
+            <ImageView
+                android:layout_width="162sp"
+                android:layout_height="12sp"
+                android:background="@drawable/horizontal_line"
+                app:layout_constraintTop_toBottomOf="@id/else_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+            <!--<ImageView-->
+            <!--android:layout_width="175dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:src="@drawable/else_img"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/book_btn" />-->
 
             <Button
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginRight="35dp"
-                android:layout_marginBottom="265dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/google_maps"
+                app:layout_constraintBottom_toTopOf="@id/tripview_text_background"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tripview_text_background" />
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="35dp"
                 android:background="@drawable/tripadviser"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+                app:layout_constraintBottom_toTopOf="@id/tripview_text_background"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tripview_text_background" />
 
             <ImageView
                 android:id="@+id/drawer_handle_circle"
@@ -102,11 +131,11 @@
             android:fitsSystemWindows="true">
 
             <ScrollView
+                android:id="@+id/drawer_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="25dp"
-                android:scrollbars="none"
-                android:id="@+id/drawer_view">
+                android:scrollbars="none">
 
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/nav_constraint_layout"

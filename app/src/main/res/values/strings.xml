@@ -17,5 +17,6 @@
     <string name="trip_summery">Trip Summery</string>
     <string name="paris">Paris</string>
     <string name="book">Book</string>
+    <string name="i_want_something_else">I want something else</string>
 
 </resources>

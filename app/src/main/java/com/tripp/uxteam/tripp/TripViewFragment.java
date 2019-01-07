@@ -82,10 +82,9 @@ public class TripViewFragment extends BaseFragment {
             public void onClick(View view) {
                 View parent = view.getRootView();
                 ImageView tripview_background = parent.findViewById(R.id.tripview_background);
-                int resID = getResources().getIdentifier("new_sitemap_" + btn_name,
+                int resID = getResources().getIdentifier("attraction_" + btn_name,
                         "drawable", getActivity().getPackageName());
                 tripview_background.setImageResource(resID);
-                android.support.v4.widget.DrawerLayout mDrawerLayout = parent.findViewById(R.id.drawer_layout);
                 current_attraction_idx = attractions.indexOf(btn_name);
                 mDrawerLayout.closeDrawers();
             }
@@ -145,7 +144,7 @@ public class TripViewFragment extends BaseFragment {
             return;
 
         ImageView tripview_background = view.findViewById(R.id.tripview_background);
-        int resID = getResources().getIdentifier("new_sitemap_" + attractions.get(++current_attraction_idx),
+        int resID = getResources().getIdentifier("attraction_" + attractions.get(++current_attraction_idx),
                 "drawable", getActivity().getPackageName());
         tripview_background.setImageResource(resID);
     }
@@ -158,7 +157,7 @@ public class TripViewFragment extends BaseFragment {
             return;
 
         ImageView tripview_background = view.findViewById(R.id.tripview_background);
-        int resID = getResources().getIdentifier("new_sitemap_" + attractions.get(--current_attraction_idx),
+        int resID = getResources().getIdentifier("attraction_" + attractions.get(--current_attraction_idx),
                 "drawable", getActivity().getPackageName());
         tripview_background.setImageResource(resID);
     }
