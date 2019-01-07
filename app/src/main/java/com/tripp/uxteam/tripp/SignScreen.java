@@ -66,6 +66,19 @@ public class SignScreen extends BaseFragment {
                 fragmentTransaction.commit();
             }
         });
+
+        button = view.findViewById(R.id.login_btn);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
+                FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.fragment_container, fragment, "FETCH_TRIP_FRAGMENT").addToBackStack("FETCH_TRIP_FRAGMENT");
+                fragmentTransaction.commit();
+            }
+        });
         return view;
     }
 
