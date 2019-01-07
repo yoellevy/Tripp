@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * Use the {@link TripViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TripViewFragment extends Fragment {
+public class TripViewFragment extends BaseFragment {
 
     int current_attraction_idx = 0;
     android.support.v4.widget.DrawerLayout mDrawerLayout;
@@ -53,7 +53,8 @@ public class TripViewFragment extends Fragment {
     /**
      * add attraction thumbnail to drawer
      * currently adding mock thumbnail.
-     * @param idx index of current thumbnail to insert
+     *
+     * @param idx  index of current thumbnail to insert
      * @param name name of thumbnail
      */
     public void addSiteToTrip(int idx, final String name) {
@@ -120,7 +121,7 @@ public class TripViewFragment extends Fragment {
         nav_view = view.findViewById(R.id.nav_view);
         this.createMockAttractions();
         openDrawer();
-        ((ImageView)view.findViewById(R.id.drawer_handle_circle)).setOnClickListener(new View.OnClickListener() {
+        ((ImageView) view.findViewById(R.id.drawer_handle_circle)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openDrawer();
@@ -174,6 +175,7 @@ public class TripViewFragment extends Fragment {
 
     /**
      * fling implementation for this fragment, called from main activity
+     *
      * @param velocityX
      * @param velocityY
      */
@@ -194,4 +196,8 @@ public class TripViewFragment extends Fragment {
         mDrawerLayout.openDrawer(nav_view);
     }
 
+    @Override
+    boolean onBack() {
+        return true;
+    }
 }

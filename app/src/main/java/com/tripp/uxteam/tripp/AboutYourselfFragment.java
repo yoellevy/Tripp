@@ -19,7 +19,7 @@ import android.widget.ImageView;
  * Use the {@link AboutYourselfFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AboutYourselfFragment extends Fragment {
+public class AboutYourselfFragment extends BaseFragment {
 
     static int QuestionsAnswered = 0;
 
@@ -51,14 +51,14 @@ public class AboutYourselfFragment extends Fragment {
 
     /**
      * set Images source using known ids
+     *
      * @param title_id the id of the title source image
-     * @param img_id1 first answer ids source
-     * @param img_id2 second answer ids source
-     * @param img_id3 third answer ids source
-     * @param img_id4 fourth answer ids source
+     * @param img_id1  first answer ids source
+     * @param img_id2  second answer ids source
+     * @param img_id3  third answer ids source
+     * @param img_id4  fourth answer ids source
      */
-    void set_answers_background(int title_id,int img_id1,int img_id2,int img_id3,int img_id4)
-    {
+    void set_answers_background(int title_id, int img_id1, int img_id2, int img_id3, int img_id4) {
         ImageView title_img = view.findViewById(R.id.about_title);
         Button img_rightTop = view.findViewById(R.id.img_right_top);
         Button img_leftTop = view.findViewById(R.id.img_left_top);
@@ -128,12 +128,13 @@ public class AboutYourselfFragment extends Fragment {
                         setQuestion();
                         return;
                     }
-
+                    QuestionsAnswered = 0;
                     SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
                     FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, fragment,"FETCH_TRIP_FRAGMENT");
+                    fragmentTransaction.add(R.id.fragment_container, fragment, "FETCH_TRIP_FRAGMENT").addToBackStack("FETCH_TRIP_FRAGMENT");
                     fragmentTransaction.commit();
+                    setQuestion();
                 }
             });
             i++;
@@ -152,15 +153,16 @@ public class AboutYourselfFragment extends Fragment {
         super.onDetach();
     }
 
-    /**
-     * function which contains action for back(i.e. click back button)
-     */
-    public void OnBack() {
+
+    @Override
+    boolean onBack() {
         QuestionsAnswered--;
-        if (QuestionsAnswered < 0)
+        if (QuestionsAnswered < 0) {
             QuestionsAnswered = 0;
+            return true;
+        }
         setQuestion();
+        return false;
+
     }
-
-
 }
