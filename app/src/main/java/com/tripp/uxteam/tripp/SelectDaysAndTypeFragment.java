@@ -84,11 +84,6 @@ public class SelectDaysAndTypeFragment extends BaseFragment {
                 @Override
                 public void onClick(View view) {
                     view.setActivated(!view.isActivated());
-                    // if you want only one type of trip to be enabled uncomment this
-//                    for (int j = 0; j < imgButtons.length; j ++){
-//                        if(finalI == j){continue;}
-//                        else {imgButtons[j].setActivated(false);}
-//                    }
                 }
 
             });

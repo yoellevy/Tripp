@@ -129,7 +129,6 @@ public class AboutYourselfFragment extends BaseFragment {
                         return;
                     }
                     QuestionsAnswered = 0;
-
                     SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
                     FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
