@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 
+/**
+ * a costume number picker element
+ */
 public class MyNumberPicker extends NumberPicker {
     /**
      * Create a new number picker.
@@ -43,8 +46,7 @@ public class MyNumberPicker extends NumberPicker {
     private void updateView(View view) {
         Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.raleway_medium);
         if(view instanceof EditText) {
-            ((EditText) view).setTextSize(30);
-//            ((EditText) view).setTextSize(25);
+            ((EditText) view).setTextSize(25);
             ((EditText) view).setTypeface(typeface);
         }
     }
