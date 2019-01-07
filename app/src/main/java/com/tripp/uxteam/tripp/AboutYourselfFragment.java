@@ -128,13 +128,13 @@ public class AboutYourselfFragment extends BaseFragment {
                         setQuestion();
                         return;
                     }
-                    QuestionsAnswered++;
-
+                    QuestionsAnswered = 0;
                     SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
                     FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.add(R.id.fragment_container, fragment, "FETCH_TRIP_FRAGMENT").addToBackStack(null);
+                    fragmentTransaction.add(R.id.fragment_container, fragment, "FETCH_TRIP_FRAGMENT").addToBackStack("FETCH_TRIP_FRAGMENT");
                     fragmentTransaction.commit();
+                    setQuestion();
                 }
             });
             i++;
