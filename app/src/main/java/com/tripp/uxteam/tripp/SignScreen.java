@@ -62,7 +62,7 @@ public class SignScreen extends BaseFragment {
                 AboutYourselfFragment fragment = AboutYourselfFragment.newInstance();
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.fragment_container, fragment, "ABOUT_FRAGMENT").addToBackStack(null);
+                fragmentTransaction.add(R.id.fragment_container, fragment, "ABOUT_FRAGMENT").addToBackStack("ABOUT_FRAGMENT");
                 fragmentTransaction.commit();
             }
         });
