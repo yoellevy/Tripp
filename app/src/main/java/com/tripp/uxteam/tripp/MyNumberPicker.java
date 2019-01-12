@@ -48,7 +48,7 @@ public class MyNumberPicker extends NumberPicker {
         Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.raleway_medium);
         if(view instanceof EditText) {
             ((EditText) view).setTextSize(25);
-//            ((EditText) view).setTypeface(typeface);
+            ((EditText) view).setTypeface(typeface);
         }
     }
 
