@@ -72,15 +72,6 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>
 
-            <!--<ImageView-->
-            <!--android:layout_width="175dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="5dp"-->
-            <!--android:src="@drawable/else_img"-->
-            <!--app:layout_constraintLeft_toLeftOf="parent"-->
-            <!--app:layout_constraintRight_toRightOf="parent"-->
-            <!--app:layout_constraintTop_toBottomOf="@id/book_btn" />-->
-
             <Button
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -120,6 +111,14 @@
                 app:layout_constraintStart_toStartOf="@id/drawer_handle_circle"
                 app:layout_constraintTop_toTopOf="@id/drawer_handle_circle" />
 
+            <ImageView
+                android:layout_width="20.5dp"
+                android:layout_height="70.5dp"
+                android:background="@drawable/swipe_vertical_hint"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="15sp"/>
         </android.support.constraint.ConstraintLayout>
 
         <android.support.design.widget.NavigationView
