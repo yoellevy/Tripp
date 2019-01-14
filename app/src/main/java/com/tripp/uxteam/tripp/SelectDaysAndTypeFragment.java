@@ -1,7 +1,6 @@
 package com.tripp.uxteam.tripp;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,7 +18,6 @@ import android.widget.NumberPicker;
  * Activities that contain this fragment must implement the
  * to handle interaction events.
  */
-
 public class SelectDaysAndTypeFragment extends BaseFragment {
     public SelectDaysAndTypeFragment() {
     }
@@ -49,13 +47,13 @@ public class SelectDaysAndTypeFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_select_days_and_type, container, false);
 
         // here we'll set the values of the number picker element
-        NumberPicker timePicker = view.findViewById(R.id.time_length_picker);
-        timePicker.setMinValue(1);
-        timePicker.setMaxValue(30);
+//        NumberPicker timePicker = view.findViewById(R.id.time_length_picker);
+//        timePicker.setMinValue(1);
+//        timePicker.setMaxValue(30);
 
         NumberPicker timeTypePicker = view.findViewById(R.id.time_types_picker);
         timeTypePicker.setMinValue(0);
-        timeTypePicker.setMaxValue(2);
+        timeTypePicker.setMaxValue(4);
         timeTypePicker.setDisplayedValues(getResources().getStringArray(R.array.TIME_TYPES));
 
 
