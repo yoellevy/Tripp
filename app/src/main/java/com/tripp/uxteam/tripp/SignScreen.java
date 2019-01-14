@@ -2,6 +2,8 @@ package com.tripp.uxteam.tripp;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -62,8 +64,12 @@ public class SignScreen extends BaseFragment {
                         StaticImageFragment.FRAGMENTS.ABOUT_YOURSELF.toString());
 
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
+//                FragmentTransaction trans= fragmentManager.beginTransaction();
+//                trans.remove(this).commit();
+//                fragmentManager.popBackStack();
+
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.fragment_container, fragment, "ABOUT_FRAGMENT").addToBackStack("ABOUT_FRAGMENT");
+                fragmentTransaction.add(R.id.fragment_container, fragment, "STATIC_FRAG").addToBackStack("STATIC_FRAG");
                 fragmentTransaction.commit();
             }
         });
@@ -95,6 +101,14 @@ public class SignScreen extends BaseFragment {
 
     @Override
     boolean onBack() {
-        return true;
+        return false;
     }
+
+
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//        MainActivity.GetInstance().fragmentManager.findFragmentByTag("STATIC_FRAG")
+//
+//    }
 }

@@ -82,7 +82,7 @@ public class StaticImageFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param imgToLoad Parameter 1.
+     * @param imgToLoad        Parameter 1.
      * @param fragmentToPassTo Parameter 2.
      * @return A new instance of fragment StaticImageFragment.
      */
@@ -144,7 +144,10 @@ public class StaticImageFragment extends Fragment {
             AboutYourselfFragment fragment = AboutYourselfFragment.newInstance();
             FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.fragment_container, fragment, null);
+            fragmentTransaction.remove(this).commit();
+            fragmentManager.popBackStack();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.fragment_container, fragment, "ABOUT_FRAGMENT").addToBackStack("ABOUT_FRAGMENT");
             fragmentTransaction.commit();
 
         }
@@ -156,7 +159,7 @@ public class StaticImageFragment extends Fragment {
             SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
             FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.fragment_container, fragment, null);
+            fragmentTransaction.add(R.id.fragment_container, fragment, "ABOUT_FRAGMENT").addToBackStack("ABOUT_FRAGMENT");
             fragmentTransaction.commit();
 
         }
