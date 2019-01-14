@@ -89,7 +89,6 @@ public class StaticImageFragment extends Fragment {
      * @param fragmentToPassTo Parameter 2.
      * @return A new instance of fragment StaticImageFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static StaticImageFragment newInstance(String imgToLoad, String fragmentToPassTo) {
         StaticImageFragment fragment = new StaticImageFragment();
         Bundle args = new Bundle();
@@ -150,34 +149,22 @@ public class StaticImageFragment extends Fragment {
     private void changeFragment(){
         if (!passedToNextFragment) {
             passedToNextFragment = true;
+            Fragment fragment = AboutYourselfFragment.newInstance();;
+
             if (this.fragmentToPassTo.equals(FRAGMENTS.ABOUT_YOURSELF.toString())) {
-                changeToAboutFragment();
+                fragment = AboutYourselfFragment.newInstance();
             } else if (this.fragmentToPassTo.equals(FRAGMENTS.TRIP_TYPE.toString())) {
-                changeToTripTypeFragment();
+                fragment = SelectDaysAndTypeFragment.newInstance();
             }
+
+            FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.remove(this).commit();
+            fragmentManager.popBackStack();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.fragment_container, fragment, "ABOUT_FRAGMENT").addToBackStack("ABOUT_FRAGMENT");
+            fragmentTransaction.commit();
         }
-    }
-
-    private void changeToAboutFragment(){
-        AboutYourselfFragment fragment = AboutYourselfFragment.newInstance();
-        FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.remove(this).commit();
-        fragmentManager.popBackStack();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, fragment, "ABOUT_FRAGMENT").addToBackStack("ABOUT_FRAGMENT");
-        fragmentTransaction.commit();
-    }
-
-    private void changeToTripTypeFragment(){
-        SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
-        FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.remove(this).commit();
-        fragmentManager.popBackStack();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, fragment, "TRIP_TYPE").addToBackStack("TRIP_TYPE");
-        fragmentTransaction.commit();
     }
 
     @Override
