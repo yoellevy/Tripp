@@ -19,6 +19,7 @@ import android.widget.NumberPicker;
  * Activities that contain this fragment must implement the
  * to handle interaction events.
  */
+
 public class SelectDaysAndTypeFragment extends BaseFragment {
     public SelectDaysAndTypeFragment() {
     }
