@@ -22,15 +22,55 @@ import java.util.TimerTask;
  * create an instance of this fragment.
  */
 public class StaticImageFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String IMG_TO_LOAD = "param1";
     private static final String FRAGMENT_TO_PASS_TO = "param2";
-    enum FRAGMENTS {ABOUT_YOURSELF}
+    public enum FRAGMENTS {
+        ABOUT_YOURSELF("ABOUT_YOURSELF"),
+        TRIP_TYPE("TRIP_TYPE");
+        private final String text;
 
-    // TODO: Rename and change types of parameters
+        /**
+         * @param text
+         */
+        FRAGMENTS(final String text) {
+            this.text = text;
+        }
+
+        /* (non-Javadoc)
+         * @see java.lang.Enum#toString()
+         */
+        @Override
+        public String toString() {
+            return text;
+        }
+    }
+
+    enum IMAGES {
+        static_img_background_img("static_img_background_img");
+        private final String text;
+
+        /**
+         * @param text
+         */
+        IMAGES(final String text) {
+            this.text = text;
+        }
+
+        /* (non-Javadoc)
+         * @see java.lang.Enum#toString()
+         */
+        @Override
+        public String toString() {
+            return text;
+        }
+    }
+
     private String ImgToLoad;
-    private String FragmentToPassTo;
+    private String fragmentToPassTo;
+
+    private boolean passedToNextFragment = false;
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -61,7 +101,7 @@ public class StaticImageFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             ImgToLoad = getArguments().getString(IMG_TO_LOAD);
-            FragmentToPassTo = getArguments().getString(FRAGMENT_TO_PASS_TO);
+            fragmentToPassTo = getArguments().getString(FRAGMENT_TO_PASS_TO);
         }
     }
 
@@ -89,12 +129,24 @@ public class StaticImageFragment extends Fragment {
         return view;
     }
 
+    private void changeFragment(){
+        passedToNextFragment = true;
+        if (this.fragmentToPassTo.equals(FRAGMENTS.ABOUT_YOURSELF.toString()))
+        {
+            changeToAboutFragment();
+        }
+    }
+
     private void changeToAboutFragment(){
-        AboutYourselfFragment fragment = AboutYourselfFragment.newInstance();
-        FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, fragment, null);
-        fragmentTransaction.commit();
+        if (!passedToNextFragment){
+
+            AboutYourselfFragment fragment = AboutYourselfFragment.newInstance();
+            FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.fragment_container, fragment, null);
+            fragmentTransaction.commit();
+
+        }
     }
 
     @Override

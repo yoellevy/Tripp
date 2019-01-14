@@ -56,7 +56,11 @@ public class SignScreen extends BaseFragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StaticImageFragment fragment = StaticImageFragment.newInstance("","");
+
+                StaticImageFragment fragment = StaticImageFragment.newInstance(
+                        StaticImageFragment.IMAGES.static_img_background_img.toString(),
+                        StaticImageFragment.FRAGMENTS.ABOUT_YOURSELF.toString());
+
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.add(R.id.fragment_container, fragment, "ABOUT_FRAGMENT").addToBackStack("ABOUT_FRAGMENT");
