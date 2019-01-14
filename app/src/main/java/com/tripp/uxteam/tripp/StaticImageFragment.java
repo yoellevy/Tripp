@@ -48,7 +48,10 @@ public class StaticImageFragment extends Fragment {
     }
 
     enum IMAGES {
-        static_img_background_img("static_img_background_img");
+        static_img_background_img("static_img_background_img"),
+        now_we_know_you_better("now_we_know_you_better"),
+        welcome_back("welcome_back");
+
         private final String text;
 
         /**
@@ -67,7 +70,7 @@ public class StaticImageFragment extends Fragment {
         }
     }
 
-    private String ImgToLoad;
+    private String imgToLoad;
     private String fragmentToPassTo;
 
     private boolean passedToNextFragment = false;
@@ -100,7 +103,7 @@ public class StaticImageFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            ImgToLoad = getArguments().getString(IMG_TO_LOAD);
+            imgToLoad = getArguments().getString(IMG_TO_LOAD);
             fragmentToPassTo = getArguments().getString(FRAGMENT_TO_PASS_TO);
         }
     }
@@ -111,7 +114,7 @@ public class StaticImageFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_static_image, container, false);
         ImageView backgroundImg = view.findViewById(R.id.static_img_background_img);
-
+        backgroundImg.setBackgroundResource(enumToId());
         backgroundImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,40 +132,52 @@ public class StaticImageFragment extends Fragment {
         return view;
     }
 
+    /**
+     * we can do this only here because it's after inflation.
+     * @return the id of the image in R
+     */
+    private int enumToId(){
+        if (this.imgToLoad.equals(IMAGES.static_img_background_img.toString()))
+        { return R.drawable.after_sign_up; }
+        else if (this.imgToLoad.equals(IMAGES.now_we_know_you_better.toString()))
+        { return R.drawable.now_we_know_you_better; }
+        else if(this.imgToLoad.equals(IMAGES.welcome_back.toString()))
+        { return R.drawable.welcome_back; }
+
+        return R.id.static_img_background_img;
+    }
+
     private void changeFragment(){
-        if (this.fragmentToPassTo.equals(FRAGMENTS.ABOUT_YOURSELF.toString()))
-        {
-            changeToAboutFragment();
-        } else if (this.fragmentToPassTo.equals(FRAGMENTS.TRIP_TYPE.toString())){
-            changeToTripTypeFragment();
+        if (!passedToNextFragment) {
+            passedToNextFragment = true;
+            if (this.fragmentToPassTo.equals(FRAGMENTS.ABOUT_YOURSELF.toString())) {
+                changeToAboutFragment();
+            } else if (this.fragmentToPassTo.equals(FRAGMENTS.TRIP_TYPE.toString())) {
+                changeToTripTypeFragment();
+            }
         }
     }
 
     private void changeToAboutFragment(){
-        if (!passedToNextFragment){
-            passedToNextFragment = true;
-            AboutYourselfFragment fragment = AboutYourselfFragment.newInstance();
-            FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.remove(this).commit();
-            fragmentManager.popBackStack();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.fragment_container, fragment, "ABOUT_FRAGMENT").addToBackStack("ABOUT_FRAGMENT");
-            fragmentTransaction.commit();
-
-        }
+        AboutYourselfFragment fragment = AboutYourselfFragment.newInstance();
+        FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.remove(this).commit();
+        fragmentManager.popBackStack();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.fragment_container, fragment, "ABOUT_FRAGMENT").addToBackStack("ABOUT_FRAGMENT");
+        fragmentTransaction.commit();
     }
 
     private void changeToTripTypeFragment(){
-        if (!passedToNextFragment){
-
-            SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
-            FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.fragment_container, fragment, "ABOUT_FRAGMENT").addToBackStack("ABOUT_FRAGMENT");
-            fragmentTransaction.commit();
-
-        }
+        SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
+        FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.remove(this).commit();
+        fragmentManager.popBackStack();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.fragment_container, fragment, "TRIP_TYPE").addToBackStack("TRIP_TYPE");
+        fragmentTransaction.commit();
     }
 
     @Override

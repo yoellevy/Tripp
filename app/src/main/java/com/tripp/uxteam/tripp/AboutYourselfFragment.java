@@ -129,7 +129,11 @@ public class AboutYourselfFragment extends BaseFragment {
                         return;
                     }
                     QuestionsAnswered = 0;
-                    SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
+
+                    StaticImageFragment fragment = StaticImageFragment.newInstance(
+                            StaticImageFragment.IMAGES.now_we_know_you_better.toString(),
+                            StaticImageFragment.FRAGMENTS.TRIP_TYPE.toString());
+
                     FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.add(R.id.fragment_container, fragment, "FETCH_TRIP_FRAGMENT").addToBackStack("FETCH_TRIP_FRAGMENT");

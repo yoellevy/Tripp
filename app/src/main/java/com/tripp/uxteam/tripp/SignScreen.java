@@ -79,7 +79,11 @@ public class SignScreen extends BaseFragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
+
+                StaticImageFragment fragment = StaticImageFragment.newInstance(
+                        StaticImageFragment.IMAGES.welcome_back.toString(),
+                        StaticImageFragment.FRAGMENTS.TRIP_TYPE.toString());
+
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.add(R.id.fragment_container, fragment, "FETCH_TRIP_FRAGMENT").addToBackStack("FETCH_TRIP_FRAGMENT");
