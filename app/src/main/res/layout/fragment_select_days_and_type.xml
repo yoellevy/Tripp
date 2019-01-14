@@ -55,7 +55,7 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="45"
+                    android:layout_weight="40"
                     android:layout_gravity="center"
                     android:orientation="horizontal"
                     android:paddingHorizontal="@dimen/select_days_and_type_fragment_img_margin"
@@ -86,7 +86,7 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="45"
+                    android:layout_weight="40"
                     android:layout_gravity="center"
                     android:paddingHorizontal="@dimen/select_days_and_type_fragment_img_margin"
                     android:orientation="horizontal"
