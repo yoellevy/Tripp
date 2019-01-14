@@ -115,14 +115,14 @@ public class StaticImageFragment extends Fragment {
         backgroundImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeToAboutFragment();
+                changeFragment();
             }
         });
 
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                changeToAboutFragment();
+                changeFragment();
             }
         }, 1500);
 
@@ -130,17 +130,30 @@ public class StaticImageFragment extends Fragment {
     }
 
     private void changeFragment(){
-        passedToNextFragment = true;
         if (this.fragmentToPassTo.equals(FRAGMENTS.ABOUT_YOURSELF.toString()))
         {
             changeToAboutFragment();
+        } else if (this.fragmentToPassTo.equals(FRAGMENTS.TRIP_TYPE.toString())){
+            changeToTripTypeFragment();
         }
     }
 
     private void changeToAboutFragment(){
         if (!passedToNextFragment){
-
+            passedToNextFragment = true;
             AboutYourselfFragment fragment = AboutYourselfFragment.newInstance();
+            FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.fragment_container, fragment, null);
+            fragmentTransaction.commit();
+
+        }
+    }
+
+    private void changeToTripTypeFragment(){
+        if (!passedToNextFragment){
+
+            SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
             FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.add(R.id.fragment_container, fragment, null);
