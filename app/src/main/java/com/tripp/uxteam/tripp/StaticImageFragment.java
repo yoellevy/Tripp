@@ -126,7 +126,7 @@ public class StaticImageFragment extends Fragment {
             public void run() {
                 changeFragment();
             }
-        }, 1500);
+        }, 3000);
 
         return view;
     }

@@ -54,8 +54,8 @@ public class SignScreen extends BaseFragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_sign_screen, container, false);
-        Button button = view.findViewById(R.id.signup_btn);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button signup_btn = view.findViewById(R.id.signup_btn);
+        signup_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -64,22 +64,17 @@ public class SignScreen extends BaseFragment {
                         StaticImageFragment.FRAGMENTS.ABOUT_YOURSELF.toString());
 
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
-//                FragmentTransaction trans= fragmentManager.beginTransaction();
-//                trans.remove(this).commit();
-//                fragmentManager.popBackStack();
-
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.add(R.id.fragment_container, fragment, "STATIC_FRAG").addToBackStack("STATIC_FRAG");
                 fragmentTransaction.commit();
             }
         });
 
-        button = view.findViewById(R.id.login_btn);
+        Button signin_btn = view.findViewById(R.id.login_btn);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        signin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 StaticImageFragment fragment = StaticImageFragment.newInstance(
                         StaticImageFragment.IMAGES.welcome_back.toString(),
                         StaticImageFragment.FRAGMENTS.TRIP_TYPE.toString());

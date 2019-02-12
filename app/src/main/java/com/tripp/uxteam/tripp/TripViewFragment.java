@@ -1,10 +1,14 @@
 package com.tripp.uxteam.tripp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.ArrayMap;
+import android.support.v4.view.GravityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 
 /**
@@ -27,7 +32,7 @@ public class TripViewFragment extends BaseFragment {
     android.support.v4.widget.DrawerLayout mDrawerLayout;
     NavigationView nav_view;
     View view;
-    ArrayList<String> attractions;
+    ArrayList<String> attractionsNames;
 
     public TripViewFragment() {
     }
@@ -85,41 +90,33 @@ public class TripViewFragment extends BaseFragment {
                 int resID = getResources().getIdentifier("attraction_" + btn_name,
                         "drawable", getActivity().getPackageName());
                 tripview_background.setImageResource(resID);
-                current_attraction_idx = attractions.indexOf(btn_name);
+                current_attraction_idx = attractionsNames.indexOf(btn_name);
                 mDrawerLayout.closeDrawers();
             }
         });
         nav_layout.addView(btn);
     }
 
+    Map<String, Attraction> attractionMap;
 
     private void createMockAttractions() {
-        attractions = new ArrayList<>();
-        attractions.add("eiffel_tower");
-        attractions.add("seine_river");
-        attractions.add("saint_chapelle");
-        attractions.add("notre_dame");
-        attractions.add("lafayette_gourmet");
-        attractions.add("the_louvre");
-        attractions.add("versailles");
-        attractions.add("matamata_coffee");
-        attractions.add("musee_dorsay");
-        attractions.add("berthillon_glaciet");
-        attractions.add("arc_de_triomphe");
-        attractions.add("jadis_pub");
+        attractionsNames = new ArrayList<>();
+        ArrayList<Attraction> attractions = Globals.currentTrip.getAttractions();
+        attractionMap = new ArrayMap<>();
+
+        for (Attraction attraction :
+                Globals.currentTrip.getAttractions()) {
+            attractionsNames.add(attraction.getAssetName());
+            attractionMap.put(attraction.getAssetName(), attraction);
+        }
     }
 
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_trip_view, null);
-
+    private void initializeView(View view) {
         mDrawerLayout = view.findViewById(R.id.drawer_layout);
         nav_view = view.findViewById(R.id.nav_view);
         this.createMockAttractions();
         openDrawer();
+        //set drawer button functionality to open drawer
         ((ImageView) view.findViewById(R.id.drawer_handle_circle)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,10 +124,52 @@ public class TripViewFragment extends BaseFragment {
             }
         });
         int idx = 1;
-        for (String name : attractions
-                ) {
+        for (String name :
+                attractionsNames) {
             addSiteToTrip(idx++, name);
         }
+    }
+
+    private void attachGoogleMapsButton(View view) {
+        Button googleMapBtn = view.findViewById(R.id.google_maps_button);
+        googleMapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri gmmIntentUri = Uri.parse(attractionMap.get(attractionsNames.get(current_attraction_idx)).getGoogleMapsUrl());
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
+    }
+
+    private void attachTripadvisorButton(View view) {
+        Button googleMapBtn = view.findViewById(R.id.tripadvisors_button);
+        googleMapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri gmmIntentUri = Uri.parse(attractionMap.get(attractionsNames.get(current_attraction_idx)).getTripAdvisorUrl());
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                startActivity(mapIntent);
+            }
+        });
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        view = inflater.inflate(R.layout.fragment_trip_view, null);
+
+        initializeView(view);
+
+        attachGoogleMapsButton(view);
+        attachTripadvisorButton(view);
+
+        ImageView tripview_background = view.findViewById(R.id.tripview_background);
+        int resID = getResources().getIdentifier("attraction_" + attractionsNames.get(current_attraction_idx),
+                "drawable", getActivity().getPackageName());
+        tripview_background.setImageResource(resID);
 
         return view;
     }
@@ -140,11 +179,11 @@ public class TripViewFragment extends BaseFragment {
      * function to show next attraction
      */
     public void next_slide() {
-        if (current_attraction_idx == attractions.size() - 1)
+        if (current_attraction_idx == attractionsNames.size() - 1)
             return;
 
         ImageView tripview_background = view.findViewById(R.id.tripview_background);
-        int resID = getResources().getIdentifier("attraction_" + attractions.get(++current_attraction_idx),
+        int resID = getResources().getIdentifier("attraction_" + attractionsNames.get(++current_attraction_idx),
                 "drawable", getActivity().getPackageName());
         tripview_background.setImageResource(resID);
     }
@@ -157,7 +196,7 @@ public class TripViewFragment extends BaseFragment {
             return;
 
         ImageView tripview_background = view.findViewById(R.id.tripview_background);
-        int resID = getResources().getIdentifier("attraction_" + attractions.get(--current_attraction_idx),
+        int resID = getResources().getIdentifier("attraction_" + attractionsNames.get(--current_attraction_idx),
                 "drawable", getActivity().getPackageName());
         tripview_background.setImageResource(resID);
     }
@@ -179,6 +218,9 @@ public class TripViewFragment extends BaseFragment {
      * @param velocityY
      */
     public void onFling(float velocityX, float velocityY) {
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            return;
+        }
         if (Math.abs(velocityY) > Math.abs(velocityX)) {
             if (velocityY > 0)
                 previous_slide();
