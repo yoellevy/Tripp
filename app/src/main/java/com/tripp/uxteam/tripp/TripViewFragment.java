@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -55,6 +56,19 @@ public class TripViewFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
     }
 
+    void renderBackground() {
+        ImageView tripview_background = view.findViewById(R.id.tripview_background);
+        int resID = getResources().getIdentifier("attraction_" + attractionsNames.get(current_attraction_idx),
+                "drawable", getActivity().getPackageName());
+        tripview_background.setImageResource(resID);
+    }
+
+    void setAttractionText()
+    {
+        ((TextView)view.findViewById(R.id.attraction_title)).setText(attractionMap.get(attractionsNames.get(current_attraction_idx)).getName());
+        ((TextView)view.findViewById(R.id.description_text)).setText(attractionMap.get(attractionsNames.get(current_attraction_idx)).getShortDescription());
+    }
+
     /**
      * add attraction thumbnail to drawer
      * currently adding mock thumbnail.
@@ -85,12 +99,9 @@ public class TripViewFragment extends BaseFragment {
 
             @Override
             public void onClick(View view) {
-                View parent = view.getRootView();
-                ImageView tripview_background = parent.findViewById(R.id.tripview_background);
-                int resID = getResources().getIdentifier("attraction_" + btn_name,
-                        "drawable", getActivity().getPackageName());
-                tripview_background.setImageResource(resID);
                 current_attraction_idx = attractionsNames.indexOf(btn_name);
+                renderBackground();
+                setAttractionText();
                 mDrawerLayout.closeDrawers();
             }
         });
@@ -166,11 +177,9 @@ public class TripViewFragment extends BaseFragment {
         attachGoogleMapsButton(view);
         attachTripadvisorButton(view);
 
-        ImageView tripview_background = view.findViewById(R.id.tripview_background);
-        int resID = getResources().getIdentifier("attraction_" + attractionsNames.get(current_attraction_idx),
-                "drawable", getActivity().getPackageName());
-        tripview_background.setImageResource(resID);
+        renderBackground();
 
+        setAttractionText();
         return view;
     }
 
@@ -182,10 +191,10 @@ public class TripViewFragment extends BaseFragment {
         if (current_attraction_idx == attractionsNames.size() - 1)
             return;
 
-        ImageView tripview_background = view.findViewById(R.id.tripview_background);
-        int resID = getResources().getIdentifier("attraction_" + attractionsNames.get(++current_attraction_idx),
-                "drawable", getActivity().getPackageName());
-        tripview_background.setImageResource(resID);
+        current_attraction_idx++;
+        renderBackground();
+        setAttractionText();
+
     }
 
     /**
@@ -195,10 +204,9 @@ public class TripViewFragment extends BaseFragment {
         if (current_attraction_idx == 0)
             return;
 
-        ImageView tripview_background = view.findViewById(R.id.tripview_background);
-        int resID = getResources().getIdentifier("attraction_" + attractionsNames.get(--current_attraction_idx),
-                "drawable", getActivity().getPackageName());
-        tripview_background.setImageResource(resID);
+        current_attraction_idx--;
+        renderBackground();
+        setAttractionText();
     }
 
     @Override
