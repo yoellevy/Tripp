@@ -7,10 +7,12 @@ import java.util.List;
 public class Trip {
     private String name;
     private ArrayList<Attraction> attractions;
+    private double[] tripCharacteristicVec;
 
-    Trip(String name) {
+    Trip(String name, double[] charVec) {
         this.name = name;
         attractions = new ArrayList<>();
+        this.tripCharacteristicVec = charVec;
     }
 
     void addAttraction(Attraction attraction) {
@@ -26,6 +28,6 @@ public class Trip {
     }
 
     double[] getTripCharacteristicVec() {
-        return new double[]{0, 0, 0, 0};
+        return this.tripCharacteristicVec;
     }
 }

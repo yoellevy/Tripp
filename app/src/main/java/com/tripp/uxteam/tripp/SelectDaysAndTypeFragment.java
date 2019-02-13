@@ -19,6 +19,9 @@ import android.widget.NumberPicker;
  * to handle interaction events.
  */
 public class SelectDaysAndTypeFragment extends BaseFragment {
+
+    double[] tripCharacteristicVec = new double[]{0, 0, 0, 0};
+
     public SelectDaysAndTypeFragment() {
     }
 
@@ -62,6 +65,22 @@ public class SelectDaysAndTypeFragment extends BaseFragment {
 
             @Override
             public void onClick(View view) {
+
+                int numberOfTypes = 0;
+                for (int i = 0; i < 4; i++)
+                    if (tripCharacteristicVec[i] > 0)
+                    {
+                        tripCharacteristicVec[i] = 1;
+                        numberOfTypes++;
+                    }
+                if (numberOfTypes == 0)
+                    return;
+                for (int i = 0; i < 4; i++)
+                    tripCharacteristicVec[i] /= numberOfTypes;
+
+                TripPicker tripPicker = new TripPicker(Globals.users);
+                Globals.currentTrip = tripPicker.getTrip(Globals.currentSessionUser, tripCharacteristicVec);
+
                 TripViewFragment fragment = TripViewFragment.newInstance();
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -79,9 +98,18 @@ public class SelectDaysAndTypeFragment extends BaseFragment {
         for (int i = 0; i < imgButtons.length; i++) {
             // if you want only one type of trip to be enabled uncomment this
             // final int finalI = i;
+            final int currentBtnIndex = i;
             imgButtons[i].setOnClickListener(new View.OnClickListener() {
+                int btnIndex = currentBtnIndex;
+                boolean isActive = false;
+
                 @Override
                 public void onClick(View view) {
+                    isActive = !isActive;
+                    if (isActive)
+                        tripCharacteristicVec[currentBtnIndex] = 1;
+                    else
+                        tripCharacteristicVec[currentBtnIndex] = 0;
                     view.setActivated(!view.isActivated());
                 }
 
@@ -91,6 +119,12 @@ public class SelectDaysAndTypeFragment extends BaseFragment {
         return view;
     }
 
+
+    @Override
+    public void onResume() {
+        tripCharacteristicVec = new double[]{0, 0, 0, 0};
+        super.onResume();
+    }
 
     @Override
     public void onAttach(Context context) {

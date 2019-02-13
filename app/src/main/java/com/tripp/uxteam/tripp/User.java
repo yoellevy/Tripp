@@ -23,4 +23,8 @@ public class User {
     public double[] getCharacteristicVec() {
         return characteristicVec;
     }
+
+    public void setCharacteristicVec(double[] charVec) {
+        this.characteristicVec = charVec;
+    }
 }

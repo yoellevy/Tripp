@@ -63,10 +63,9 @@ public class TripViewFragment extends BaseFragment {
         tripview_background.setImageResource(resID);
     }
 
-    void setAttractionText()
-    {
-        ((TextView)view.findViewById(R.id.attraction_title)).setText(attractionMap.get(attractionsNames.get(current_attraction_idx)).getName());
-        ((TextView)view.findViewById(R.id.description_text)).setText(attractionMap.get(attractionsNames.get(current_attraction_idx)).getShortDescription());
+    void setAttractionText() {
+        ((TextView) view.findViewById(R.id.attraction_title)).setText(attractionMap.get(attractionsNames.get(current_attraction_idx)).getName());
+        ((TextView) view.findViewById(R.id.description_text)).setText(attractionMap.get(attractionsNames.get(current_attraction_idx)).getShortDescription());
     }
 
     /**
@@ -89,7 +88,7 @@ public class TripViewFragment extends BaseFragment {
         if (idx % 3 != 1)
             layout_param.leftToRight = idx - 1;
         btn.setLayoutParams(layout_param);
-        int resID = getResources().getIdentifier("summery_" + name,
+        int resID = getResources().getIdentifier("summary_" + name,
                 "drawable", getActivity().getPackageName());
         btn.setBackgroundResource(resID);
         btn.setContentDescription(name);
@@ -139,6 +138,8 @@ public class TripViewFragment extends BaseFragment {
                 attractionsNames) {
             addSiteToTrip(idx++, name);
         }
+
+        ((TextView) view.findViewById(R.id.sub_trip_sum_title)).setText(Globals.currentTrip.getName());
     }
 
     private void attachGoogleMapsButton(View view) {
