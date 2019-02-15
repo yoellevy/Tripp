@@ -1,7 +1,6 @@
 package com.tripp.uxteam.tripp;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +19,9 @@ import android.widget.NumberPicker;
  * to handle interaction events.
  */
 public class SelectDaysAndTypeFragment extends BaseFragment {
+
+    double[] tripCharacteristicVec = new double[]{0, 0, 0, 0};
+
     public SelectDaysAndTypeFragment() {
     }
 
@@ -48,13 +50,13 @@ public class SelectDaysAndTypeFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_select_days_and_type, container, false);
 
         // here we'll set the values of the number picker element
-        NumberPicker timePicker = view.findViewById(R.id.time_length_picker);
-        timePicker.setMinValue(1);
-        timePicker.setMaxValue(30);
+//        NumberPicker timePicker = view.findViewById(R.id.time_length_picker);
+//        timePicker.setMinValue(1);
+//        timePicker.setMaxValue(30);
 
         NumberPicker timeTypePicker = view.findViewById(R.id.time_types_picker);
         timeTypePicker.setMinValue(0);
-        timeTypePicker.setMaxValue(2);
+        timeTypePicker.setMaxValue(4);
         timeTypePicker.setDisplayedValues(getResources().getStringArray(R.array.TIME_TYPES));
 
 
@@ -63,6 +65,22 @@ public class SelectDaysAndTypeFragment extends BaseFragment {
 
             @Override
             public void onClick(View view) {
+
+                int numberOfTypes = 0;
+                for (int i = 0; i < 4; i++)
+                    if (tripCharacteristicVec[i] > 0)
+                    {
+                        tripCharacteristicVec[i] = 1;
+                        numberOfTypes++;
+                    }
+                if (numberOfTypes == 0)
+                    return;
+                for (int i = 0; i < 4; i++)
+                    tripCharacteristicVec[i] /= numberOfTypes;
+
+                TripPicker tripPicker = new TripPicker(Globals.users);
+                Globals.currentTrip = tripPicker.getTrip(Globals.currentSessionUser, tripCharacteristicVec);
+
                 TripViewFragment fragment = TripViewFragment.newInstance();
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -80,9 +98,18 @@ public class SelectDaysAndTypeFragment extends BaseFragment {
         for (int i = 0; i < imgButtons.length; i++) {
             // if you want only one type of trip to be enabled uncomment this
             // final int finalI = i;
+            final int currentBtnIndex = i;
             imgButtons[i].setOnClickListener(new View.OnClickListener() {
+                int btnIndex = currentBtnIndex;
+                boolean isActive = false;
+
                 @Override
                 public void onClick(View view) {
+                    isActive = !isActive;
+                    if (isActive)
+                        tripCharacteristicVec[currentBtnIndex] = 1;
+                    else
+                        tripCharacteristicVec[currentBtnIndex] = 0;
                     view.setActivated(!view.isActivated());
                 }
 
@@ -92,6 +119,12 @@ public class SelectDaysAndTypeFragment extends BaseFragment {
         return view;
     }
 
+
+    @Override
+    public void onResume() {
+        tripCharacteristicVec = new double[]{0, 0, 0, 0};
+        super.onResume();
+    }
 
     @Override
     public void onAttach(Context context) {

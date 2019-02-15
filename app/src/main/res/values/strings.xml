@@ -9,12 +9,14 @@
     <string name="trip_duration_question">and how long will you be away?</string>
     <string name="fetch_my_trip_btn_txt">Fetch My Trip!</string>
     <string-array name="TIME_TYPES">
-        <item>days</item>
-        <item>weeks</item>
-        <item>months</item>
+        <item>weekend</item>
+        <item>one week</item>
+        <item>two weeks</item>
+        <item>three weeks</item>
+        <item>one month</item>
     </string-array>
 
-    <string name="trip_summery">Trip Summery</string>
+    <string name="trip_summary">Trip Summary</string>
     <string name="paris">Paris</string>
     <string name="book">Book</string>
     <string name="i_want_something_else">I want something else</string>

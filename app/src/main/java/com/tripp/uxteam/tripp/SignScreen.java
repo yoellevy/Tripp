@@ -1,9 +1,9 @@
 package com.tripp.uxteam.tripp;
 
-import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 
 /**
@@ -55,24 +54,31 @@ public class SignScreen extends BaseFragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_sign_screen, container, false);
-        Button button = view.findViewById(R.id.signup_btn);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button signup_btn = view.findViewById(R.id.signup_btn);
+        signup_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AboutYourselfFragment fragment = AboutYourselfFragment.newInstance();
+
+                StaticImageFragment fragment = StaticImageFragment.newInstance(
+                        StaticImageFragment.IMAGES.static_img_background_img.toString(),
+                        StaticImageFragment.FRAGMENTS.ABOUT_YOURSELF.toString());
+
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.fragment_container, fragment, "ABOUT_FRAGMENT").addToBackStack("ABOUT_FRAGMENT");
+                fragmentTransaction.add(R.id.fragment_container, fragment, "STATIC_FRAG").addToBackStack("STATIC_FRAG");
                 fragmentTransaction.commit();
             }
         });
 
-        button = view.findViewById(R.id.login_btn);
+        Button signin_btn = view.findViewById(R.id.login_btn);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        signin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
+                StaticImageFragment fragment = StaticImageFragment.newInstance(
+                        StaticImageFragment.IMAGES.welcome_back.toString(),
+                        StaticImageFragment.FRAGMENTS.TRIP_TYPE.toString());
+
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.add(R.id.fragment_container, fragment, "FETCH_TRIP_FRAGMENT").addToBackStack("FETCH_TRIP_FRAGMENT");
@@ -94,6 +100,14 @@ public class SignScreen extends BaseFragment {
 
     @Override
     boolean onBack() {
-        return true;
+        return false;
     }
+
+
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//        MainActivity.GetInstance().fragmentManager.findFragmentByTag("STATIC_FRAG")
+//
+//    }
 }

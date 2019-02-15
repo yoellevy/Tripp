@@ -10,11 +10,12 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
-            android:layout_gravity="bottom"
+            android:layout_gravity="top"
             app:layout_constraintTop_toTopOf="parent"
             android:weightSum="100">
             <LinearLayout
@@ -23,6 +24,7 @@
                 android:layout_weight="10"
                 android:background="#2d2d2d"
                 android:orientation="horizontal"
+                android:layout_gravity="top"
                 android:weightSum="100">
                 <ImageView
                     android:id="@+id/about_title"
@@ -35,26 +37,26 @@
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="45"
+                android:layout_gravity="center"
                 android:orientation="vertical"
                 android:weightSum="100">
                 <TextView
                     android:id="@+id/top_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:layout_weight="10"
                     android:text="@string/trip_type_question"
                     android:textAlignment="center"
-                    android:paddingTop="10dp"
                     android:fontFamily="@font/raleway_bold"
                     android:textColor="#111111"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="10dp"
                     android:textSize="18sp">
                 </TextView>
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="45"
+                    android:layout_weight="40"
+                    android:layout_gravity="center"
                     android:orientation="horizontal"
                     android:paddingHorizontal="@dimen/select_days_and_type_fragment_img_margin"
                     android:weightSum="100">
@@ -84,7 +86,8 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="45"
+                    android:layout_weight="40"
+                    android:layout_gravity="center"
                     android:paddingHorizontal="@dimen/select_days_and_type_fragment_img_margin"
                     android:orientation="horizontal"
                     android:weightSum="100">
@@ -116,50 +119,46 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
-                android:layout_weight="35"
+                android:layout_weight="30"
                 android:orientation="vertical"
-                android:weightSum="100">
-            <TextView
-                android:id="@+id/bot_text"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="40"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/raleway_bold"
-                android:text="@string/trip_duration_question"
-                android:textAlignment="center"
-                android:textColor="#111111"
-                android:textSize="18sp">
-            </TextView>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_gravity="center"
-                android:orientation="horizontal">
-                <NumberPicker
-                    android:theme="@style/DefaultNumberPickerTheme"
-                    android:id="@+id/time_length_picker"
+                android:weightSum="100">
+                <TextView
+                    android:id="@+id/bot_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    />
-                <NumberPicker
-                    android:theme="@style/DefaultNumberPickerTheme"
-                    android:id="@+id/time_types_picker"
-                    android:layout_width="150dp"
-                    android:gravity="center_vertical"
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="0dp"
+                    android:layout_weight="25"
+                    android:gravity="center"
+                    android:fontFamily="@font/raleway_bold"
+                    android:text="@string/trip_duration_question"
+                    android:textAlignment="center"
+                    android:textColor="#111111"
+                    android:textSize="18sp">
+                </TextView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="75"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:orientation="horizontal">
+                    <com.tripp.uxteam.tripp.MyNumberPicker
+                        android:theme="@style/DefaultNumberPickerTheme"
+                        android:id="@+id/time_types_picker"
+                        android:layout_width="170dp"
+                        android:gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="10"
+                android:layout_gravity="top"
+                android:layout_weight="15"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal">
 
@@ -177,9 +176,7 @@
                     android:textSize="22sp" />
 
             </LinearLayout>
-
         </LinearLayout>
-
     </android.support.constraint.ConstraintLayout>
 
 
