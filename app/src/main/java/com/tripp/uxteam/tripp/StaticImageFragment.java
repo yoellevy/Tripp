@@ -149,7 +149,7 @@ public class StaticImageFragment extends Fragment {
     private void changeFragment(){
         if (!passedToNextFragment) {
             passedToNextFragment = true;
-            Fragment fragment = AboutYourselfFragment.newInstance();;
+            Fragment fragment = AboutYourselfFragment.newInstance();
 
             if (this.fragmentToPassTo.equals(FRAGMENTS.ABOUT_YOURSELF.toString())) {
                 fragment = AboutYourselfFragment.newInstance();
