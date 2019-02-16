@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 
-// here
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -77,10 +76,10 @@ public class SelectDaysAndTypeFragment extends BaseFragment {
                 TripPicker tripPicker = new TripPicker(Globals.users);
                 Globals.currentTrip = tripPicker.getTrip(Globals.currentSessionUser, tripCharacteristicVec);
 
-                TripViewFragment fragment = TripViewFragment.newInstance();
+                Fragment fragment = YouGotCity.newInstance(Globals.currentTrip.getName());
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.fragment_container, fragment, "TRIP_VIEW_FRAGMENT").addToBackStack("TRIP_VIEW_FRAGMENT");
+                fragmentTransaction.add(R.id.fragment_container, fragment, "You_Got_City").addToBackStack("TRIP_VIEW_FRAGMENT");
                 fragmentTransaction.commit();
             }
         });

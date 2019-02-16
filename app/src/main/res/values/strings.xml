@@ -8,6 +8,10 @@
     <string name="trip_type_question">What type of trip are you looking for?</string>
     <string name="trip_duration_question">and how long will you be away?</string>
     <string name="fetch_my_trip_btn_txt">Fetch My Trip!</string>
+    <string name="you_got_trip">You got </string>
+    <string name="it_suits_you">It suits you perfectly</string>
+    <string name="view_trip_btn_txt">View Trip</string>
+    <string name="i_want_something_else_btn_txt"><u>I want something else</u></string>
     <string-array name="TIME_TYPES">
         <item>weekend</item>
         <item>one week</item>
@@ -20,5 +24,6 @@
     <string name="paris">Paris</string>
     <string name="book">Book</string>
     <string name="i_want_something_else">I want something else</string>
+    <string name="tripp_logo">tripp_logo</string>
 
 </resources>
