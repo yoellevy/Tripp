@@ -145,6 +145,7 @@
                     android:textAlignment="center"
                     android:orientation="horizontal">
                     <com.tripp.uxteam.tripp.MyNumberPicker
+                        android:descendantFocusability="blocksDescendants"
                         android:theme="@style/DefaultNumberPickerTheme"
                         android:id="@+id/time_types_picker"
                         android:layout_width="170dp"

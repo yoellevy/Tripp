@@ -79,7 +79,7 @@ public class SelectDaysAndTypeFragment extends BaseFragment {
                 Fragment fragment = LoaderFragment.newInstance(Globals.currentTrip.getName());
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.fragment_container, fragment, "You_Got_City").addToBackStack("TRIP_VIEW_FRAGMENT");
+                fragmentTransaction.replace(R.id.fragment_container, fragment, "You_Got_City").addToBackStack("TRIP_VIEW_FRAGMENT");
                 fragmentTransaction.commit();
             }
         });

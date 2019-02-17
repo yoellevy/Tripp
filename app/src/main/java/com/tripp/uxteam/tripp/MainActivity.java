@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction =
                 fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, signScreenFragment,"SIGN_SCREEN").addToBackStack("SIGN_SCREEN");
+        fragmentTransaction.replace(R.id.fragment_container, signScreenFragment,"SIGN_SCREEN").addToBackStack("SIGN_SCREEN");
         fragmentTransaction.commit();
     }
 

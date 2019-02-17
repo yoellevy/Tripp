@@ -62,7 +62,7 @@ public class YouGotCity extends BaseFragment {
         fragmentTransaction.remove(this).commit();
         fragmentManager.popBackStack();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, fragment, "TRIP_VIEW_FRAGMENT").addToBackStack("TRIP_VIEW_FRAGMENT");
+        fragmentTransaction.replace(R.id.fragment_container, fragment, "TRIP_VIEW_FRAGMENT").addToBackStack("TRIP_VIEW_FRAGMENT");
         fragmentTransaction.commit();
     }
 
@@ -89,12 +89,7 @@ public class YouGotCity extends BaseFragment {
 
             @Override
             public void onClick(View view) {
-                int duration = Toast.LENGTH_SHORT;
-                CharSequence toastText = "This feature is not yet supported.";
-                Toast toast = Toast.makeText(getContext(), toastText, duration);
-                toast.show();
-
-
+                getFragmentManager().popBackStack();
             }
         });
 
@@ -113,6 +108,6 @@ public class YouGotCity extends BaseFragment {
 
     @Override
     boolean onBack() {
-        return false;
+        return true;
     }
 }

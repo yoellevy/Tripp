@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -140,6 +141,16 @@ public class TripViewFragment extends BaseFragment {
         }
 
         ((TextView) view.findViewById(R.id.sub_trip_sum_title)).setText(Globals.currentTrip.getName());
+
+        ((TextView) view.findViewById(R.id.else_text)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int duration = Toast.LENGTH_SHORT;
+                CharSequence toastText = "This feature is not yet supported.";
+                Toast toast = Toast.makeText(getContext(), toastText, duration);
+                toast.show();
+            }
+        });
     }
 
     private void attachGoogleMapsButton(View view) {

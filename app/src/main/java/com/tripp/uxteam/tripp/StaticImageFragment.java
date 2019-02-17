@@ -171,7 +171,7 @@ public class StaticImageFragment extends BaseFragment {
             fragmentTransaction.remove(this).commit();
             fragmentManager.popBackStack();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.fragment_container, fragment, fragmentName).addToBackStack(fragmentName);
+            fragmentTransaction.replace(R.id.fragment_container, fragment, fragmentName).addToBackStack(fragmentName);
             fragmentTransaction.commit();
         }
     }
