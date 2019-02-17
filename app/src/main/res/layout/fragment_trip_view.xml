@@ -87,16 +87,17 @@
                 android:id="@+id/description_text"
                 android:layout_width="250sp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="left"
                 app:layout_constraintTop_toBottomOf="@id/attraction_title"
                 app:layout_constraintBottom_toTopOf="@id/book_btn"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginTop="15sp"
                 android:textColor="#fff"
                 android:fontFamily="@font/raleway_light"
                 android:textSize="17sp"
                 android:lineSpacingMultiplier="1.2"
+                android:layout_marginBottom="12sp"
+                android:justificationMode="inter_word"
                 />
 
             <Button

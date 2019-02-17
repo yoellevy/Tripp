@@ -60,7 +60,7 @@ public class LoaderFragment extends Fragment {
             public void run() {
                 changeFragment();
             }
-        }, 10000);
+        }, 3000);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_loader_screen, container, false);
     }
