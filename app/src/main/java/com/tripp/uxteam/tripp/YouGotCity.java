@@ -21,7 +21,7 @@ import android.widget.Toast;
  * Use the {@link YouGotCity#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class YouGotCity extends Fragment {
+public class YouGotCity extends BaseFragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
 
@@ -71,7 +71,7 @@ public class YouGotCity extends Fragment {
                 Fragment fragment = TripViewFragment.newInstance();
                 FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.fragment_container, fragment, "You_Got_City").addToBackStack("TRIP_VIEW_FRAGMENT");
+                fragmentTransaction.add(R.id.fragment_container, fragment, "TRIP_VIEW_FRAGMENT").addToBackStack("TRIP_VIEW_FRAGMENT");
                 fragmentTransaction.commit();
 
             }
@@ -104,4 +104,8 @@ public class YouGotCity extends Fragment {
         super.onDetach();
     }
 
+    @Override
+    boolean onBack() {
+        return false;
+    }
 }

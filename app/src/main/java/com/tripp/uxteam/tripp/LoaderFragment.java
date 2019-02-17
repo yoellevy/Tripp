@@ -20,7 +20,7 @@ import java.util.TimerTask;
  * Use the {@link LoaderFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoaderFragment extends Fragment {
+public class LoaderFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
 
     private String mParam1;
@@ -86,4 +86,8 @@ public class LoaderFragment extends Fragment {
         super.onDetach();
     }
 
+    @Override
+    boolean onBack() {
+        return false;
+    }
 }

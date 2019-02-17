@@ -21,11 +21,17 @@ import java.util.TimerTask;
  * Use the {@link StaticImageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class StaticImageFragment extends Fragment {
+public class StaticImageFragment extends BaseFragment {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String IMG_TO_LOAD = "param1";
     private static final String FRAGMENT_TO_PASS_TO = "param2";
+
+    @Override
+    boolean onBack() {
+        return false;
+    }
+
     public enum FRAGMENTS {
         ABOUT_YOURSELF("ABOUT_YOURSELF"),
         TRIP_TYPE("TRIP_TYPE");
@@ -146,11 +152,14 @@ public class StaticImageFragment extends Fragment {
         return R.id.static_img_background_img;
     }
 
+
+
+
     private void changeFragment(){
         if (!passedToNextFragment) {
             passedToNextFragment = true;
             Fragment fragment = AboutYourselfFragment.newInstance();
-
+            String fragmentName = "";
             if (this.fragmentToPassTo.equals(FRAGMENTS.ABOUT_YOURSELF.toString())) {
                 fragment = AboutYourselfFragment.newInstance();
             } else if (this.fragmentToPassTo.equals(FRAGMENTS.TRIP_TYPE.toString())) {
@@ -162,7 +171,7 @@ public class StaticImageFragment extends Fragment {
             fragmentTransaction.remove(this).commit();
             fragmentManager.popBackStack();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.fragment_container, fragment, "ABOUT_FRAGMENT").addToBackStack("ABOUT_FRAGMENT");
+            fragmentTransaction.add(R.id.fragment_container, fragment, fragmentName).addToBackStack(fragmentName);
             fragmentTransaction.commit();
         }
     }
