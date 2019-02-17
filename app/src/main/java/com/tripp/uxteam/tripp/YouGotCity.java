@@ -54,6 +54,18 @@ public class YouGotCity extends BaseFragment {
         }
     }
 
+    private void changeFragment() {
+
+        Fragment fragment = TripViewFragment.newInstance();
+        FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.remove(this).commit();
+        fragmentManager.popBackStack();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.fragment_container, fragment, "TRIP_VIEW_FRAGMENT").addToBackStack("TRIP_VIEW_FRAGMENT");
+        fragmentTransaction.commit();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,12 +80,7 @@ public class YouGotCity extends BaseFragment {
             @Override
             public void onClick(View view) {
 
-                Fragment fragment = TripViewFragment.newInstance();
-                FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.fragment_container, fragment, "TRIP_VIEW_FRAGMENT").addToBackStack("TRIP_VIEW_FRAGMENT");
-                fragmentTransaction.commit();
-
+                changeFragment();
             }
         });
 

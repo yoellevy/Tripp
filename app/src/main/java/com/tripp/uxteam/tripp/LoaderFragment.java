@@ -72,7 +72,7 @@ public class LoaderFragment extends BaseFragment {
         fragmentTransaction.remove(this).commit();
         fragmentManager.popBackStack();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, fragment, "ABOUT_FRAGMENT").addToBackStack("ABOUT_FRAGMENT");
+        fragmentTransaction.add(R.id.fragment_container, fragment, "YOU_GOT_FRAGMENT").addToBackStack("YOU_GOT_FRAGMENT");
         fragmentTransaction.commit();
     }
 
