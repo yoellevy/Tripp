@@ -54,6 +54,10 @@ public class YouGotCity extends BaseFragment {
         }
     }
 
+    /**
+     * just a standard fragment change, we don't want this fragment in the stack though so we could
+     * use the back btn
+     */
     private void changeFragment() {
         Fragment fragment = TripViewFragment.newInstance();
         FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;

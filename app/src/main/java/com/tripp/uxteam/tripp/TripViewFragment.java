@@ -209,7 +209,7 @@ public class TripViewFragment extends BaseFragment {
     /**
      * function to show next attraction
      */
-    public void next_slide() {
+    public void nextSlide() {
         if (current_attraction_idx == attractionsNames.size() - 1)
             return;
 
@@ -255,7 +255,7 @@ public class TripViewFragment extends BaseFragment {
             if (velocityY > 0)
                 previous_slide();
             else
-                next_slide();
+                nextSlide();
         } else {
             if (velocityX > 0)
                 openDrawer();

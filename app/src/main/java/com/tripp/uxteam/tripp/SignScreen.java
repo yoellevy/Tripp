@@ -103,11 +103,4 @@ public class SignScreen extends BaseFragment {
         return false;
     }
 
-
-//    @Override
-//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//        MainActivity.GetInstance().fragmentManager.findFragmentByTag("STATIC_FRAG")
-//
-//    }
 }

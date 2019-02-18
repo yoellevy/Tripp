@@ -56,24 +56,24 @@ public class AboutYourselfFragment extends BaseFragment {
     /**
      * set Images source using known ids
      *
-     * @param title_id the id of the title source image
-     * @param img_id1  first answer ids source
-     * @param img_id2  second answer ids source
-     * @param img_id3  third answer ids source
-     * @param img_id4  fourth answer ids source
+     * @param titleId the id of the title source image
+     * @param imgId1  first answer ids source
+     * @param imgId2  second answer ids source
+     * @param imgId3  third answer ids source
+     * @param imgId4  fourth answer ids source
      */
-    void set_answers_background(int title_id, int img_id1, int img_id2, int img_id3, int img_id4) {
+    void set_answers_background(int titleId, int imgId1, int imgId2, int imgId3, int imgId4) {
         ImageView title_img = view.findViewById(R.id.about_title);
-        Button img_rightTop = view.findViewById(R.id.img_right_top);
-        Button img_leftTop = view.findViewById(R.id.img_left_top);
-        Button img_rightBottm = view.findViewById(R.id.img_right_bottom);
-        Button img_leftBottom = view.findViewById(R.id.img_left_bottom);
+        Button imgRightTop = view.findViewById(R.id.img_right_top);
+        Button imgLeftTop = view.findViewById(R.id.img_left_top);
+        Button imgRightBottm = view.findViewById(R.id.img_right_bottom);
+        Button imgLeftBottom = view.findViewById(R.id.img_left_bottom);
 
-        title_img.setImageResource(title_id);
-        img_rightTop.setBackgroundResource(img_id1);
-        img_leftTop.setBackgroundResource(img_id2);
-        img_rightBottm.setBackgroundResource(img_id3);
-        img_leftBottom.setBackgroundResource(img_id4);
+        title_img.setImageResource(titleId);
+        imgRightTop.setBackgroundResource(imgId1);
+        imgLeftTop.setBackgroundResource(imgId2);
+        imgRightBottm.setBackgroundResource(imgId3);
+        imgLeftBottom.setBackgroundResource(imgId4);
     }
 
     /**
@@ -159,15 +159,15 @@ public class AboutYourselfFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_about_yourself, container, false);
-        Button img_rightTop = view.findViewById(R.id.img_right_top);
-        Button img_leftTop = view.findViewById(R.id.img_left_top);
-        Button img_rightBottm = view.findViewById(R.id.img_right_bottom);
-        Button img_leftBottom = view.findViewById(R.id.img_left_bottom);
+        Button imgRightTop = view.findViewById(R.id.img_right_top);
+        Button imgLeftTop = view.findViewById(R.id.img_left_top);
+        Button imgRightBottm = view.findViewById(R.id.img_right_bottom);
+        Button imgLeftBottom = view.findViewById(R.id.img_left_bottom);
 
-        Button[] img_arr = new Button[]{img_leftTop, img_rightTop, img_rightBottm, img_leftBottom};
+        Button[] imgArr = new Button[]{imgLeftTop, imgRightTop, imgRightBottm, imgLeftBottom};
 
         for (Button img_button :
-                img_arr) {
+                imgArr) {
             img_button.setOnClickListener(new View.OnClickListener() {
 
                 /**

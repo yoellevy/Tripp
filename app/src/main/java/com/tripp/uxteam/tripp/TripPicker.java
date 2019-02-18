@@ -22,11 +22,9 @@ public class TripPicker {
 
         for (int i = 0; i < users.size(); i++) {
             User chosenUser = users.get(i);
-            System.out.println("Current user in index: " + i);
             for (Trip trip: chosenUser.getTrips()) {
                 if (calculateDistance(desiredTrip, trip) < similarityThreshold) // good enough trip
                 {
-                    System.out.println("Found good enough trip: " + trip.getName());
                     return trip;
                 }
             }

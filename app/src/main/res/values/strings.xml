@@ -8,8 +8,7 @@
     <string name="trip_type_question">What type of trip are you looking for?</string>
     <string name="trip_duration_question">and how long will you be away?</string>
     <string name="fetch_my_trip_btn_txt">Fetch My Trip!</string>
-    <string name="loader_text">w
-        e\'re finding the \nbest trip for you.</string>
+    <string name="loader_text">we\'re finding the \nbest trip for you.</string>
     <string name="you_got_trip">You got </string>
     <string name="it_suits_you">Suits you perfectly</string>
     <string name="view_trip_btn_txt">View Trip</string>
