@@ -1,6 +1,8 @@
 package com.tripp.uxteam.tripp;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -62,7 +65,12 @@ public class LoaderFragment extends BaseFragment {
             }
         }, 3000);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_loader_screen, container, false);
+        View view = inflater.inflate(R.layout.fragment_loader_screen, container, false);
+        ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.loadingPanel);
+        int colorCodeDark = Color.parseColor("#F39DB6");
+        progressBar.setIndeterminateTintList(ColorStateList.valueOf(colorCodeDark));
+
+        return view;
     }
 
     private void changeFragment() {
@@ -76,7 +84,7 @@ public class LoaderFragment extends BaseFragment {
         fragmentTransaction.commit();
     }
 
-        @Override
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }

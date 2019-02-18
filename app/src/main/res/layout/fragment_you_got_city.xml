@@ -11,38 +11,37 @@
         android:layout_height="match_parent"
         android:background="#ffffff">
 
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/tripp_logo"
+            android:padding="65dp"
+            android:src="@drawable/tripp_logo_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <android.support.constraint.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:padding="25dp"
+            android:layout_marginBottom="275sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/logo"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:contentDescription="@string/tripp_logo"
-                android:src="@drawable/tripp_logo_dark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/logo">
 
             <TextView
                 android:id="@+id/top_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/raleway_bold"
                 android:text="@string/you_got_trip"
                 android:textColor="#111111"
                 android:textSize="30sp"
-                app:layout_constraintStart_toStartOf="@+id/logo"
-                app:layout_constraintTop_toBottomOf="@id/logo"></TextView>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/transition_screen_exclamation_mark"
@@ -53,7 +52,7 @@
                 android:textColor="#F39DB6"
                 android:textSize="45sp"
                 app:layout_constraintBottom_toBottomOf="@+id/city_text"
-                app:layout_constraintStart_toEndOf="@+id/city_text"></TextView>
+                app:layout_constraintStart_toEndOf="@+id/city_text" />
 
             <TextView
                 android:id="@+id/city_text"
@@ -63,8 +62,9 @@
                 android:text="city"
                 android:textColor="#111111"
                 android:textSize="45sp"
-                app:layout_constraintStart_toStartOf="@+id/logo"
-                app:layout_constraintTop_toBottomOf="@+id/top_text"></TextView>
+                android:layout_marginTop="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/top_text" />
 
             <TextView
                 android:id="@+id/it_suits_you_perfectly"
@@ -74,9 +74,9 @@
                 android:fontFamily="@font/raleway_bold"
                 android:text="@string/it_suits_you"
                 android:textColor="#111111"
-                android:textSize="30sp"
-                app:layout_constraintStart_toStartOf="@+id/logo"
-                app:layout_constraintTop_toBottomOf="@+id/city_text"></TextView>
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/city_text" />
 
             <TextView
                 android:id="@+id/transition_screen_dot"
@@ -87,7 +87,7 @@
                 android:textColor="#9BC4FC"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="@+id/it_suits_you_perfectly"
-                app:layout_constraintStart_toEndOf="@+id/it_suits_you_perfectly"></TextView>
+                app:layout_constraintStart_toEndOf="@+id/it_suits_you_perfectly" />
 
 
         </android.support.constraint.ConstraintLayout>

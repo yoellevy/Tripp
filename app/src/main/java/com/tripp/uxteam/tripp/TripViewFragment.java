@@ -146,7 +146,17 @@ public class TripViewFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 int duration = Toast.LENGTH_SHORT;
-                CharSequence toastText = "This feature is not yet supported.";
+                CharSequence toastText = "We have no other attraction to show you." + ("\ud83d\ude3f");
+                Toast toast = Toast.makeText(getContext(), toastText, duration);
+                toast.show();
+            }
+        });
+
+        ((Button)view.findViewById(R.id.book_btn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int duration = Toast.LENGTH_SHORT;
+                CharSequence toastText = "Currently unavailable, this will send you to booking website when implemented.";
                 Toast toast = Toast.makeText(getContext(), toastText, duration);
                 toast.show();
             }

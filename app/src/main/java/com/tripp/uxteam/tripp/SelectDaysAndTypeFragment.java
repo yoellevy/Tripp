@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,7 +70,13 @@ public class SelectDaysAndTypeFragment extends BaseFragment {
                         numberOfTypes++;
                     }
                 if (numberOfTypes == 0)
+                {
+                    int duration = Toast.LENGTH_SHORT;
+                    CharSequence toastText = "Please select at least one type.";
+                    Toast toast = Toast.makeText(getContext(), toastText, duration);
+                    toast.show();
                     return;
+                }
                 for (int i = 0; i < 4; i++)
                     tripCharacteristicVec[i] /= numberOfTypes;
 
