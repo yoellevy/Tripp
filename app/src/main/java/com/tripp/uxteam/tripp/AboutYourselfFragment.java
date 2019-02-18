@@ -23,6 +23,10 @@ public class AboutYourselfFragment extends BaseFragment {
 
     static int QuestionsAnswered = 0;
 
+    private double[] firstAnswerVec;
+    private double[] secondAnswerVec;
+    private double[] thirdAnswerVec;
+
     public AboutYourselfFragment() {
         // Required empty public constructor
     }
@@ -82,21 +86,73 @@ public class AboutYourselfFragment extends BaseFragment {
                     R.drawable.answer_frame_site_seeing,
                     R.drawable.answer_frame_park,
                     R.drawable.answer_frame_art,
-                    R.drawable.answer_frame_viewpoints);
+                    R.drawable.answer_frame_hiking);
         } else if (QuestionsAnswered == 1) {
             set_answers_background(R.drawable.title_two,
                     R.drawable.answer_frame_sites,
                     R.drawable.answer_frame_shopping,
                     R.drawable.answer_frame_pool,
-                    R.drawable.answer_frame_coffee);
+                    R.drawable.answer_frame_viewpoints);
         } else if (QuestionsAnswered == 2) {
             set_answers_background(R.drawable.title_three,
                     R.drawable.answer_frame_party,
-                    R.drawable.answer_frame_bed,
+                    R.drawable.answer_frame_stargazing,
                     R.drawable.answer_frame_food,
                     R.drawable.answer_frame_bar);
         }
     }
+
+    void setQuestionVec(int question, int btnIndex) {
+        if (question == 0) {
+            switch (btnIndex) {
+                case 0:
+                    firstAnswerVec = new double[]{0, 0.8, 0.1, 0.1};
+                    break;
+                case 1:
+                    firstAnswerVec = new double[]{1, 0, 0, 0};
+                    break;
+                case 2:
+                    firstAnswerVec = new double[]{0.5, 0.5, 0, 0};
+                    break;
+                case 3:
+                    firstAnswerVec = new double[]{0, 0, 0.1, 0.9};
+                    break;
+            }
+        } else if (question == 1) {
+            switch (btnIndex) {
+                case 0:
+                    secondAnswerVec = new double[]{0, 0.7, 0.3, 0};
+                    break;
+                case 1:
+                    secondAnswerVec = new double[]{1, 0, 0, 0};
+                    break;
+                case 2:
+                    secondAnswerVec = new double[]{0, 1, 0, 0};
+                    break;
+                case 3:
+                    secondAnswerVec = new double[]{0, 0, 0.3, 0.7};
+                    break;
+            }
+
+        } else if (question == 2) {
+            switch (btnIndex) {
+                case 0:
+                    thirdAnswerVec = new double[]{0, 0, 0.2, 0.8};
+                    break;
+                case 1:
+                    thirdAnswerVec = new double[]{0, 0, 1, 0};
+                    break;
+                case 2:
+                    thirdAnswerVec = new double[]{0, 1, 0, 0};
+                    break;
+                case 3:
+                    thirdAnswerVec = new double[]{0, 0.5, 0.5, 0};
+                    break;
+            }
+        }
+    }
+
+    int currentBtnIndex = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,8 +164,8 @@ public class AboutYourselfFragment extends BaseFragment {
         Button img_rightBottm = view.findViewById(R.id.img_right_bottom);
         Button img_leftBottom = view.findViewById(R.id.img_left_bottom);
 
-        Button[] img_arr = new Button[]{img_rightTop, img_leftTop, img_rightBottm, img_leftBottom};
-        int i = 0;
+        Button[] img_arr = new Button[]{img_leftTop, img_rightTop, img_rightBottm, img_leftBottom};
+
         for (Button img_button :
                 img_arr) {
             img_button.setOnClickListener(new View.OnClickListener() {
@@ -120,24 +176,36 @@ public class AboutYourselfFragment extends BaseFragment {
                  * else move to select days and type fragment
                  * @param view
                  */
+                int btnIndex = currentBtnIndex;
+
                 @Override
                 public void onClick(View view) {
-
+                    setQuestionVec(QuestionsAnswered, btnIndex);
                     if (QuestionsAnswered < 2) {
                         QuestionsAnswered++;
                         setQuestion();
                         return;
                     }
                     QuestionsAnswered = 0;
-                    SelectDaysAndTypeFragment fragment = SelectDaysAndTypeFragment.newInstance();
+                    double[] loggedinUserCharVec = new double[]{0, 0, 0, 0};
+                    for (int i = 0; i < 4; i++) {
+                        loggedinUserCharVec[i] = (firstAnswerVec[i] + secondAnswerVec[i] + thirdAnswerVec[i]) / 3;
+                    }
+
+                    Globals.currentSessionUser.setCharacteristicVec(loggedinUserCharVec);
+
+                    StaticImageFragment fragment = StaticImageFragment.newInstance(
+                            StaticImageFragment.IMAGES.now_we_know_you_better.toString(),
+                            StaticImageFragment.FRAGMENTS.TRIP_TYPE.toString());
+
                     FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.add(R.id.fragment_container, fragment, "FETCH_TRIP_FRAGMENT").addToBackStack("FETCH_TRIP_FRAGMENT");
+                    fragmentTransaction.replace(R.id.fragment_container, fragment, "FETCH_TRIP_FRAGMENT").addToBackStack("FETCH_TRIP_FRAGMENT");
                     fragmentTransaction.commit();
                     setQuestion();
                 }
             });
-            i++;
+            currentBtnIndex++;
         }
 
         return view;

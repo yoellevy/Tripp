@@ -29,16 +29,20 @@ public class MainActivity extends AppCompatActivity {
         //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        SignScreen signScreenFragment = SignScreen.newInstance();
-        fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction =
-                fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, signScreenFragment,"SIGN_SCREEN").addToBackStack("SIGN_SCREEN");
-        fragmentTransaction.commit();
         setContentView(R.layout.activity_main);
         instance = this;
         mDetector = new GestureDetectorCompat(this, new MyGestureListener());
 
+        TransactToSignScreen();
+    }
+
+    private void TransactToSignScreen() {
+        SignScreen signScreenFragment = SignScreen.newInstance();
+        fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction =
+                fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, signScreenFragment,"SIGN_SCREEN").addToBackStack("SIGN_SCREEN");
+        fragmentTransaction.commit();
     }
 
 
