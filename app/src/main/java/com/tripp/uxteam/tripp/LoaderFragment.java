@@ -66,6 +66,8 @@ public class LoaderFragment extends BaseFragment {
         }, 3000);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_loader_screen, container, false);
+
+        // we change the progress bar color here to pink...
         ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.loadingPanel);
         int colorCodeDark = Color.parseColor("#F39DB6");
         progressBar.setIndeterminateTintList(ColorStateList.valueOf(colorCodeDark));
@@ -73,6 +75,10 @@ public class LoaderFragment extends BaseFragment {
         return view;
     }
 
+    /**
+     * just a standard fragment change, we don't want this fragment in the stack though so we could
+     * use the back btn
+     */
     private void changeFragment() {
         Fragment fragment = YouGotCity.newInstance(this.mParam1);
         FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;

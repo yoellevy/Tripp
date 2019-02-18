@@ -55,7 +55,6 @@ public class YouGotCity extends BaseFragment {
     }
 
     private void changeFragment() {
-
         Fragment fragment = TripViewFragment.newInstance();
         FragmentManager fragmentManager = MainActivity.GetInstance().fragmentManager;
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -74,8 +73,8 @@ public class YouGotCity extends BaseFragment {
         TextView cityNameTextView = view.findViewById(R.id.city_text);
         cityNameTextView.setText(this.mParam1);
 
-        Button view_trip_btn = view.findViewById(R.id.view_trip_btn);
-        view_trip_btn.setOnClickListener(new View.OnClickListener() {
+        Button viewTripBtn = view.findViewById(R.id.view_trip_btn);
+        viewTripBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -84,8 +83,8 @@ public class YouGotCity extends BaseFragment {
             }
         });
 
-        TextView i_want_something_else_btn = view.findViewById(R.id.i_want_something_else_btn);
-        i_want_something_else_btn.setOnClickListener(new View.OnClickListener() {
+        TextView iWantSomethingElseBtn = view.findViewById(R.id.i_want_something_else_btn);
+        iWantSomethingElseBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
